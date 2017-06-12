@@ -1796,7 +1796,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #06c28f;
+  background: #bff0cd;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2902,6 +2902,7 @@ hr {
 .ds-top-threads li a:hover {
   border-left: 8px solid #4d768c;
 }
+首页头部样式,
 .header {
   background: url("/images/header-bk.jpg");
 }
@@ -2924,7 +2925,12 @@ hr {
   margin-left: 0px;
   text-align: center;
 }
-.site-meta .site-title {
+.site-title {
+  display: inline-block;
+  vertical-align: top;
+  line-height: 36px;
+}
+.site-meta {
   font-size: 28px;
   font-family: 'Comic Sans MS', sans-serif;
   color: #fff;
@@ -2940,7 +2946,7 @@ hr {
 }
 .site-author-name {
   margin: 48px 0 0;
-  color: #090909;
+  color: #fff;
   font-family: 'Comic Sans MS', sans-serif;
 }
 .links-of-blogroll {
@@ -2963,7 +2969,7 @@ hr {
   border-bottom: none;
 }
 .sidebar a:hover {
-  color: #0c0b0b;
+  color: #fff;
 }
 .site-state-item {
   display: inline-block;
