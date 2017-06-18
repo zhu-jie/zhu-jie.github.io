@@ -1,0 +1,895 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="openldap," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/uploads/favicon.png?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;其实如果不是对ldap各种参数要求都十分严格的情况下，比较建议采用yum的方式安装。因为相关依赖环境，功能都十分全面。对于初学者，强烈建议第一次使用yum来安装。    一、准备环境&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;确保防火墙与selinux是否都为关闭，如果防火墙">
+<meta name="keywords" content="openldap">
+<meta property="og:type" content="article">
+<meta property="og:title" content="yum方式安装openldap,phppldapadmin">
+<meta property="og:url" content="http://blog.cnjie.net/2017/06/18/yum方式安装openldap-phppldapadmin-lam/index.html">
+<meta property="og:site_name" content="那些年">
+<meta property="og:description" content="&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;其实如果不是对ldap各种参数要求都十分严格的情况下，比较建议采用yum的方式安装。因为相关依赖环境，功能都十分全面。对于初学者，强烈建议第一次使用yum来安装。    一、准备环境&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;确保防火墙与selinux是否都为关闭，如果防火墙">
+<meta property="og:image" content="http://blog.cnjie.net/uploads/ldap1.jpg">
+<meta property="og:image" content="http://blog.cnjie.net/uploads/ldap2.jpg">
+<meta property="og:updated_time" content="2017-06-18T09:52:59.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="yum方式安装openldap,phppldapadmin">
+<meta name="twitter:description" content="&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;其实如果不是对ldap各种参数要求都十分严格的情况下，比较建议采用yum的方式安装。因为相关依赖环境，功能都十分全面。对于初学者，强烈建议第一次使用yum来安装。    一、准备环境&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;确保防火墙与selinux是否都为关闭，如果防火墙">
+<meta name="twitter:image" content="http://blog.cnjie.net/uploads/ldap1.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.cnjie.net/2017/06/18/yum方式安装openldap-phppldapadmin-lam/"/>
+
+
+
+
+
+
+ <title>yum方式安装openldap,phppldapadmin | 那些年</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?6bae1e29831a43115cebb7a6a99299fa";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">那些年</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-music">
+          <a href="/music" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-play"></i> <br />
+            
+            一言美段
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://blog.cnjie.net/2017/06/18/yum方式安装openldap-phppldapadmin-lam/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="那些年">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="那些年">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">yum方式安装openldap,phppldapadmin</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-18T17:11:10+08:00">
+                2017-06-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2017/06/18/yum方式安装openldap-phppldapadmin-lam/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;其实如果不是对ldap各种参数要求都十分严格的情况下，比较建议采用yum的方式安装。因为相关依赖环境，功能都十分全面。对于初学者，强烈建议第一次使用yum来安装。   </p>
+<h2 id="一、准备环境"><a href="#一、准备环境" class="headerlink" title="一、准备环境"></a>一、准备环境</h2><p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;确保防火墙与selinux是否都为关闭，如果防火墙必须开启的情况下可做如下配置：     </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># vim /etc/sysconfig/iptables</span></div><div class="line">*filter</div><div class="line">:INPUT ACCEPT [0:0]</div><div class="line">:FORWARD ACCEPT [0:0]</div><div class="line">:OUTPUT ACCEPT [0:0]</div><div class="line">-A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT</div><div class="line">-A INPUT -p icmp -j ACCEPT</div><div class="line">-A INPUT -i lo -j ACCEPT</div><div class="line">-A INPUT -m state --state NEW -m tcp -p tcp --dport 22 -j ACCEPT</div><div class="line">-A INPUT -m state --state NEW -m tcp -p tcp --dport 80 -j ACCEPT</div><div class="line">-A INPUT -m state --state NEW -m tcp -p tcp --dport 389 -j ACCEPT -s 192.168.0.0/16</div><div class="line">-A INPUT -m state --state NEW -m tcp -p tcp --dport 636 -j ACCEPT -s 192.168.0.0/16</div><div class="line">-A INPUT -j REJECT --reject-with icmp-host-prohibited</div><div class="line">-A FORWARD -j REJECT --reject-with icmp-host-prohibited</div><div class="line">COMMIT</div></pre></td></tr></table></figure>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;重新加载后如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># iptables -L</span></div><div class="line">ACCEPT     tcp  --  anywhere             anywhere            state NEW tcp dpt:ssh</div><div class="line">ACCEPT     tcp  --  anywhere             anywhere            state NEW tcp dpt:http</div><div class="line">ACCEPT     tcp  --  192.168.0.0/16       anywhere            state NEW tcp dpt:ldap</div><div class="line">ACCEPT     tcp  --  192.168.0.0/16       anywhere            state NEW tcp dpt:ldaps</div></pre></td></tr></table></figure>
+<h2 id="二、安装，配置OPENLDAP"><a href="#二、安装，配置OPENLDAP" class="headerlink" title="二、安装，配置OPENLDAP"></a>二、安装，配置OPENLDAP</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install -y openldap-servers openldap-clients</div></pre></td></tr></table></figure>
+<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;创建日志相关</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">mkdir /var/<span class="built_in">log</span>/slapd</div><div class="line">chmod 755 /var/<span class="built_in">log</span>/slapd/</div><div class="line">chown ldap:ldap /var/<span class="built_in">log</span>/slapd/</div><div class="line">sed -i <span class="string">"/local4.*/d"</span> /etc/rsyslog.conf</div><div class="line">cat &gt;&gt; /etc/rsyslog.conf &lt;&lt; EOF</div><div class="line">local4.*   /var/<span class="built_in">log</span>/slapd/slapd.log</div><div class="line">EOF</div><div class="line">service rsyslog restart</div></pre></td></tr></table></figure>
+<h2 id="三、创建证书"><a href="#三、创建证书" class="headerlink" title="三、创建证书"></a>三、创建证书</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> /etc/pki/tls/certs</div><div class="line">make slapd.pem</div></pre></td></tr></table></figure>
+<p>下面是一个例子：</p>
+<p>这个时候，你可以运行openssl x509 -in slapd.pem -noout -text 去观察证书情况</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">chmod 640 slapd.pem</div><div class="line">chown :ldap slapd.pem</div><div class="line">ln -s /etc/pki/tls/certs/slapd.pem /etc/openldap/certs/slapd.pem</div></pre></td></tr></table></figure>
+<p>配置管理员密码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">slappasswd</div><div class="line">New password: ******</div><div class="line">Re-enter new password: ******</div><div class="line">&#123;SSHA&#125;WMz+mLF6bG9hshSe/zVEN2BdVEqmiAfs</div></pre></td></tr></table></figure>
+<h2 id="四、配置ldap相关配置文件"><a href="#四、配置ldap相关配置文件" class="headerlink" title="四、配置ldap相关配置文件"></a>四、配置ldap相关配置文件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cp /usr/share/openldap-servers/slapd.conf.obsolete /etc/openldap/slapd.conf</div><div class="line">cp /usr/share/openldap-servers/DB_CONFIG.example /var/lib/ldap/DB_CONFIG</div></pre></td></tr></table></figure>
+<p>更改相关配置文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># vim /etc/openldap/slapd.conf</span></div><div class="line">1、更改所有dc=my-domain为你的domain</div><div class="line">2、替换掉证书位子</div><div class="line">TLSCACertificateFile /etc/pki/tls/certs/ca-bundle.crt</div><div class="line">TLSCertificateFile /etc/pki/tls/certs/slapd.pem</div><div class="line">TLSCertificateKeyFile /etc/pki/tls/certs/slapd.pem</div><div class="line">3、替换掉管理员密码</div><div class="line"><span class="comment"># rootpw                secret</span></div><div class="line"><span class="comment"># rootpw                &#123;crypt&#125;ijFYNcSNctBYg</span></div><div class="line">rootpw                  &#123;SSHA&#125;WMz+mLF6bG9hshSe/zVEN2BdVEqmiAfs</div></pre></td></tr></table></figure>
+<p>更改配置文件以开启SSL认证</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">vim /etc/sysconfig/ldap</div><div class="line"> </div><div class="line">SLAPD_LDAPS=yes</div></pre></td></tr></table></figure>
+<p>更新ldap配置文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># vim /etc/openldap/ldap.conf</span></div><div class="line"><span class="comment">##“dc=my-domain,dc=com”需要你做相同的配置（更改domain）</span></div><div class="line"> </div><div class="line">BASE dc=shuyun,dc=com</div><div class="line">URI ldap://localhost</div><div class="line">TLS_REQCERT never</div></pre></td></tr></table></figure>
+<p>创建初始化数据</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">vim /root/root.ldif</div><div class="line"><span class="comment">##“dc=my-domain,dc=com”需要你做相同的配置（更改domain）</span></div><div class="line"><span class="comment">##start</span></div><div class="line">dn: dc=my-domain,dc=com</div><div class="line">dc: my-domain</div><div class="line">objectClass: dcObject</div><div class="line">objectClass: organizationalUnit</div><div class="line">ou: my-domain.com</div><div class="line">dn: ou=people,dc=my-domain,dc=com</div><div class="line">ou: people</div><div class="line">objectClass: organizationalUnit</div><div class="line">dn: ou=groups,dc=my-domain,dc=com</div><div class="line">ou: groups</div><div class="line">objectClass: organizationalUnit</div><div class="line"><span class="comment">##end</span></div></pre></td></tr></table></figure>
+<hr>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">rm -rf /etc/openldap/slapd.d/*</div><div class="line">slapadd -v -n 2 -l /root/root.ldif</div></pre></td></tr></table></figure>
+<hr>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">chown -R ldap:ldap /var/lib/ldap</div><div class="line">chown -R ldap:ldap /etc/openldap/slapd.d</div></pre></td></tr></table></figure>
+<p>测试配置初始化</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">rm -rf /etc/openldap/slapd.d/*</div><div class="line">slaptest -f /etc/openldap/slapd.conf -F /etc/openldap/slapd.d</div><div class="line">chown -R ldap:ldap /etc/openldap/slapd.d</div></pre></td></tr></table></figure>
+<p>开机启动项</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">chkconfig --level 235 slapd on</div><div class="line">service slapd start</div></pre></td></tr></table></figure>
+<p>测试LDAP情况</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">ldapsearch -x -ZZ -h localhost</div><div class="line"><span class="comment">##ps：-ZZ为启动加密认证，由于证书是自签问题，所以会报错（大致是未通过验证的证书之类的信息）：</span></div><div class="line">        ldap_start_tls: Connect error (-11)</div><div class="line">                  additional info: TLS error -8172:Peer<span class="string">'s certificate issuer has been marked as not trusted by the user.</span></div><div class="line">ldapsearch -x -H ldaps://localhost</div></pre></td></tr></table></figure>
+<p>search结果如下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># extended LDIF</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment"># LDAPv3</span></div><div class="line"><span class="comment"># base &lt;dc=my-domain,dc=com&gt; (default) with scope subtree</span></div><div class="line"><span class="comment"># filter: (objectclass=*)</span></div><div class="line"><span class="comment"># requesting: ALL</span></div><div class="line"><span class="comment">#</span></div><div class="line"><span class="comment"># my-domain.com</span></div><div class="line">dn: dc=my-domain,dc=com</div><div class="line">dc: my-domain</div><div class="line">objectClass: dcObject</div><div class="line">objectClass: organizationalUnit</div><div class="line">ou: my-domain.com</div><div class="line"><span class="comment"># people, my-domain.com</span></div><div class="line">dn: ou=people,dc=my-domain,dc=com</div><div class="line">ou: people</div><div class="line">objectClass: organizationalUnit</div><div class="line"><span class="comment"># groups, my-domain.com</span></div><div class="line">dn: ou=groups,dc=my-domain,dc=com</div><div class="line">ou: groups</div><div class="line">objectClass: organizationalUnit</div><div class="line"><span class="comment"># search result</span></div><div class="line">search: 3</div><div class="line">result: 0 Success</div><div class="line"><span class="comment"># numResponses: 4</span></div><div class="line"><span class="comment"># numEntries: 3</span></div></pre></td></tr></table></figure>
+<p>配置主机别名</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">vim /etc/nsswitch.conf</div><div class="line">hosts: ldap files dns</div></pre></td></tr></table></figure>
+<h2 id="五、安装phpldapadmin"><a href="#五、安装phpldapadmin" class="headerlink" title="五、安装phpldapadmin"></a>五、安装phpldapadmin</h2><p>添加epel源</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># rpm -ivh  http://mirrors.ukfast.co.uk/sites/dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm</span></div></pre></td></tr></table></figure>
+<p>安装phpLDAPadmin</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># yum install -y phpldapadmin</span></div><div class="line">Allow access from your network</div></pre></td></tr></table></figure>
+<p>配置Apache’s phpLDAPadmin的配置文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># vim /etc/httpd/conf.d/phpldapadmin.conf （自动创建）</span></div><div class="line">Order Deny,Allow</div><div class="line">Deny from all</div><div class="line">Allow from 127.0.0.1</div><div class="line">Allow from ::1</div><div class="line">Allow from 192.168.0</div><div class="line"><span class="comment">#ps需要对此进行相关配置操作</span></div></pre></td></tr></table></figure>
+<p>禁用自动登录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">vim /etc/phpldapadmin/config.php</div><div class="line"><span class="comment">#(line 398)</span></div><div class="line">//<span class="variable">$servers</span>-&gt;setValue(<span class="string">'login'</span>,<span class="string">'attr'</span>,<span class="string">'uid'</span>);</div></pre></td></tr></table></figure>
+<p>开启Apache服务器</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># service httpd restart</span></div></pre></td></tr></table></figure>
+<p>访问相关</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">http://webserver/ldapadmin </div><div class="line">用户名：cn=Manager,dc=my-domain,dc=com</div><div class="line">密码：你使用sldappass生成的密码</div></pre></td></tr></table></figure>
+<p>可以进行操作来观察tail -f /var/log/slapd/slapd.log日志。然后还有另外一种ldap web管理工具。</p>
+<p><img src="/uploads/ldap1.jpg" alt=""><br><img src="/uploads/ldap2.jpg" alt=""></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/uploads/wechat-reward-image.png" alt="那些年 WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/uploads/alipay-reward-image.png" alt="那些年 Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/openldap/" rel="tag"># openldap</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/18/openldap源码安装/" rel="next" title="openldap源码安装">
+                <i class="fa fa-chevron-left"></i> openldap源码安装
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="那些年" />
+          <p class="site-author-name" itemprop="name">那些年</p>
+           
+              <p class="site-description motion-element" itemprop="description">其实，没有一件事是徒劳无功的。比如我追你的这些年，我收获了更好的我，你收获了最真的感情，我们收获了一辈子的回忆。</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zhu-jie" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/your-user-name" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/p/1005055456788693/home?from=page_100505&mod=TAB&is_all=1#place" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://example.com/" title="Title" target="_blank">Title</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、准备环境"><span class="nav-text">一、准备环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、安装，配置OPENLDAP"><span class="nav-text">二、安装，配置OPENLDAP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、创建证书"><span class="nav-text">三、创建证书</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、配置ldap相关配置文件"><span class="nav-text">四、配置ldap相关配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、安装phpldapadmin"><span class="nav-text">五、安装phpldapadmin</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">那些年</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "db48cc4b2112442ba8f3c76c14a9d22f",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/exturl.js?v=5.1.1"></script>
+
+
+
+</body>
+</html>
