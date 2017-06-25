@@ -1,0 +1,1022 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="项目实施," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/uploads/favicon.png?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="环境   物理机                  ITSP-AFC-TIC-MAIL01 IBM IBM X3650 M4 Red Hat Enterprise Linux 6.4 itspafcmail01 root easyway System administrator mtr852 mtr852 system default Raid1/boot 500MB/swap 16GB/剩余空间">
+<meta name="keywords" content="项目实施">
+<meta property="og:type" content="article">
+<meta property="og:title" content="某项目部署">
+<meta property="og:url" content="http://blog.cnjie.net/2017/06/25/某项目部署/index.html">
+<meta property="og:site_name" content="Zhu&#39;s Blog">
+<meta property="og:description" content="环境   物理机                  ITSP-AFC-TIC-MAIL01 IBM IBM X3650 M4 Red Hat Enterprise Linux 6.4 itspafcmail01 root easyway System administrator mtr852 mtr852 system default Raid1/boot 500MB/swap 16GB/剩余空间">
+<meta property="og:updated_time" content="2017-06-25T01:26:48.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="某项目部署">
+<meta name="twitter:description" content="环境   物理机                  ITSP-AFC-TIC-MAIL01 IBM IBM X3650 M4 Red Hat Enterprise Linux 6.4 itspafcmail01 root easyway System administrator mtr852 mtr852 system default Raid1/boot 500MB/swap 16GB/剩余空间">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.cnjie.net/2017/06/25/某项目部署/"/>
+
+
+
+
+
+
+ <title>某项目部署 | Zhu's Blog</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?6bae1e29831a43115cebb7a6a99299fa";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Zhu's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-word">
+          <a href="/word" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-play"></i> <br />
+            
+            一言美段
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://blog.cnjie.net/2017/06/25/某项目部署/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zhu Jie">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zhu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">某项目部署</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-25T16:54:25+08:00">
+                2017-06-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/2017/06/25/某项目部署/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><table>
+<thead>
+<tr>
+<th>物理机</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ITSP-AFC-TIC-MAIL01</td>
+<td>IBM</td>
+<td>IBM X3650 M4</td>
+<td>Red Hat Enterprise Linux 6.4</td>
+<td>itspafcmail01</td>
+<td>root</td>
+<td>easyway</td>
+<td>System administrator</td>
+<td>mtr852</td>
+<td>mtr852</td>
+<td>system default</td>
+<td>Raid1<br>/boot 500MB<br>/swap 16GB<br>/剩余空间 ext4</td>
+<td>Physical IP</td>
+<td>10.183.104.11</td>
+</tr>
+<tr>
+<td>ITSP-AFC-TIC-MAIL02</td>
+<td>IBM</td>
+<td>IBM X3650 M4</td>
+<td>Red Hat Enterprise Linux 6.4</td>
+<td>itspafcmail02</td>
+<td>root</td>
+<td>easyway</td>
+<td>System administrator</td>
+<td>mtr852</td>
+<td>mtr852</td>
+<td>system default</td>
+<td>Raid1<br>/boot 500MB<br>/swap 16GB<br>/剩余空间 ext4</td>
+<td>Physical IP</td>
+<td>10.183.104.12</td>
+</tr>
+</tbody>
+</table>
+<h1 id="DRBD服务"><a href="#DRBD服务" class="headerlink" title="DRBD服务"></a>DRBD服务</h1><h2 id="安装drbd"><a href="#安装drbd" class="headerlink" title="安装drbd"></a>安装drbd</h2><p><code>wget http://www.elrepo.org/elrepo-release-6-6.el6.elrepo.noarch.rpm</code></p>
+<blockquote>
+<p>red hat 本身的源有问题，更改为清华源后可以解决</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root@itspafcmail01 Tools]# yum install drbd kmod-drbd84 -y</div><div class="line">[root@itspafcmail01 Tools]# modprobe drbd</div></pre></td></tr></table></figure>
+<blockquote>
+<p>安装完后加载模块不成功，需要重启解决，虚拟机下可不用重启直接加载</p>
+</blockquote>
+<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><p>主节点配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">global &#123;</div><div class="line">    usage-count no;</div><div class="line">&#125;</div><div class="line">common &#123;</div><div class="line">  syncer &#123;</div><div class="line">    rate 100M;</div><div class="line">    verify-alg crc32c;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"># primary for drbd1</div><div class="line">resource data &#123;</div><div class="line">  protocol C;</div><div class="line">  disk &#123;</div><div class="line">    on-io-error   detach;</div><div class="line">  &#125;</div><div class="line">  on itspafcmail01 &#123;</div><div class="line">    device    /dev/drbd0;</div><div class="line">    disk      /dev/mapper/vg_0-lv_maildata;</div><div class="line">    address   192.168.1.1:7788;</div><div class="line">    meta-disk internal;</div><div class="line">  &#125;</div><div class="line">  on itspafcmail02 &#123;</div><div class="line">    device     /dev/drbd0;</div><div class="line">    disk       /dev/mapper/vg_0-1v_maildata;</div><div class="line">    address    192.168.1.2:7788;</div><div class="line">    meta-disk  internal;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>备节点配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">global &#123;</div><div class="line">    usage-count no;</div><div class="line">&#125;</div><div class="line">common &#123;</div><div class="line">  syncer &#123;</div><div class="line">    rate 100M;</div><div class="line">    verify-alg crc32c;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"># primary for drbd1</div><div class="line">resource data &#123;</div><div class="line">  protocol C;</div><div class="line">  disk &#123;</div><div class="line">    on-io-error   detach;</div><div class="line">  &#125;</div><div class="line">  on itspafcmail01 &#123;</div><div class="line">    device    /dev/drbd0;</div><div class="line">    disk      /dev/mapper/vg_0-lv_maildata;</div><div class="line">    address   192.168.1.1:7788;</div><div class="line">    meta-disk internal;</div><div class="line">  &#125;</div><div class="line">  on itspafcmail02 &#123;</div><div class="line">    device     /dev/drbd0;</div><div class="line">    disk       /dev/mapper/vg_0-1v_maildata;</div><div class="line">    address    192.168.1.2:7788;</div><div class="line">    meta-disk  internal;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="主节点操作"><a href="#主节点操作" class="headerlink" title="主节点操作"></a>主节点操作</h2><h3 id="初始化DRBD的metadata（Create-device-metadata-）-》主机"><a href="#初始化DRBD的metadata（Create-device-metadata-）-》主机" class="headerlink" title="初始化DRBD的metadata（Create device metadata.）==》主机"></a>初始化DRBD的metadata（Create device metadata.）==》主机</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">[root@itspafcmail01 ~]# drbdadm create-md data</div><div class="line">md_offset 420814516224al_offset 420814483456bm_offset 420801638400</div><div class="line"></div><div class="line">Found some data</div><div class="line"></div><div class="line"> ==&gt; This might destroy existing data! &lt;==</div><div class="line"></div><div class="line">Do you want to proceed?</div><div class="line">[need to type &apos;yes&apos; to confirm] yes</div><div class="line"></div><div class="line">initializing activity log</div><div class="line">NOT initializing bitmap</div><div class="line">Writing meta data...New drbd meta data block successfully created.</div></pre></td></tr></table></figure>
+<h3 id="启动并查看"><a href="#启动并查看" class="headerlink" title="启动并查看"></a>启动并查看</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[root@itspafcmail01 ~]# drbdadm up all</div><div class="line">[root@itspafcmail01 ~]# cat /proc/drbd</div><div class="line">version: 8.4.9-1 (api:1/proto:86-101)`GIT-hash: 9976da086367a2476503ef7f6b13d4567327a280 build by mockbuild@Build64R6, 2016-12-13 18:38:15</div><div class="line"> 0: cs:WFConnection ro:Secondary/Unknown ds:Inconsistent/DUnknown C r----s</div><div class="line">    ns:0 nr:0 dw:0 dr:0 al:8 bm:0 lo:0 pe:0 ua:0 ap:0 ep:1 wo:f oos:410939100`</div></pre></td></tr></table></figure>
+<h2 id="备点操作"><a href="#备点操作" class="headerlink" title="备点操作"></a>备点操作</h2><h3 id="初始化DRBD的metadata（Create-device-metadata-）-》备机"><a href="#初始化DRBD的metadata（Create-device-metadata-）-》备机" class="headerlink" title="初始化DRBD的metadata（Create device metadata.）==》备机"></a>初始化DRBD的metadata（Create device metadata.）==》备机</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">[root@itspafcmail02 ~]# drbdadm create-md data</div><div class="line">md_offset 420814516224al_offset 420814483456bm_offset 420801638400</div><div class="line"></div><div class="line">Found some data</div><div class="line"></div><div class="line"> ==&gt; This might destroy existing data! &lt;==</div><div class="line"></div><div class="line">Do you want to proceed?</div><div class="line">[need to type &apos;yes&apos; to confirm] yes</div><div class="line"></div><div class="line">initializing activity log</div><div class="line">NOT initializing bitmap</div><div class="line">Writing meta data...New drbd meta data block successfully created.</div></pre></td></tr></table></figure>
+<h3 id="启动并查看-1"><a href="#启动并查看-1" class="headerlink" title="启动并查看"></a>启动并查看</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[root@itspafcmail02 ~]# cat /proc/drbd</div><div class="line">version: 8.4.9-1 (api:1/proto:86-101)</div><div class="line">GIT-hash: 9976da086367a2476503ef7f6b13d4567327a280 build by mockbuild@Build64R6, 2016-12-13 18:38:15</div><div class="line"> 0: cs:WFConnection ro:Secondary/Unknown ds:Inconsistent/DUnknown C r----s</div><div class="line">    ns:0 nr:0 dw:0 dr:0 al:8 bm:0 lo:0 pe:0 ua:0 ap:0 ep:1 wo:f oos:410939100</div></pre></td></tr></table></figure>
+<blockquote>
+<p>目前主备都为Unknow状态，有可能是网络不通导致的<br>已关闭iptables和setlinux后解决</p>
+</blockquote>
+<h2 id="同步数据"><a href="#同步数据" class="headerlink" title="同步数据"></a>同步数据</h2><p><em>只需要在一端操作，此处在主节点操作</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root@data-1-1 ~]# drbdadm primary data#如果出现“drbdsetup-84 primary 0”错误可用下面方式执行</div><div class="line">[root@data-1-1 ~]# drbdadm -- --overwrite-data-of-peer primary data#上面这步操作会非常旧，需要确定彻底执行完毕才可进行接下来的操作</div></pre></td></tr></table></figure>
+<p>同步完后的结果，在从节点看到的内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[root@itspafcmail02 ~]# cat /proc/drbdversion: 8.4.9-1 (api:1/proto:86-101)</div><div class="line">GIT-hash: 9976da086367a2476503ef7f6b13d4567327a280 build by mockbuild@Build64R6, 2016-12-13 18:38:15</div><div class="line"> 0: cs:Connected ro:Secondary/Primary ds:UpToDate/UpToDate C r-----</div><div class="line">    ns:0 nr:410939100 dw:410939100 dr:0 al:8 bm:0 lo:0 pe:0 ua:0 ap:0 ep:1 wo:f oos:0</div></pre></td></tr></table></figure>
+<h2 id="格式化并挂载"><a href="#格式化并挂载" class="headerlink" title="格式化并挂载"></a>格式化并挂载</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[root@itspafcmail01 ~]# mkfs.ext4 /dev/drbd0</div><div class="line">[root@itspafcmail01 ~]# mkdir /maildata/</div><div class="line">[root@itspafcmail01 ~]# mount /dev/drbd0 /maildata#并在maildata下创建一个测试用的文件，确保同步完毕之后进行故障模拟操作</div></pre></td></tr></table></figure>
+<p>再次查看状态：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[root@itspafcmail01 ~]# cat /proc/drbdversion: 8.4.9-1 (api:1/proto:86-101)</div><div class="line">GIT-hash: 9976da086367a2476503ef7f6b13d4567327a280 build by mockbuild@Build64R6, 2016-12-13 18:38:15</div><div class="line"> 0: cs:Connected ro:Primary/Secondary ds:UpToDate/UpToDate C r-----</div><div class="line">    ns:417499764 nr:0 dw:6560664 dr:410940969 al:1696 bm:0 lo:0 pe:0 ua:0 ap:0 ep:1 wo:f oos:0</div></pre></td></tr></table></figure>
+<h2 id="状态说明"><a href="#状态说明" class="headerlink" title="状态说明"></a>状态说明</h2><blockquote>
+<ul>
+<li>ro是角色信息<ul>
+<li>Primary/Secondary（代表这个是主节点）</li>
+<li>Secondary/Primary（代表这个是副节点）</li>
+</ul>
+</li>
+<li>ds是磁盘状态<ul>
+<li>UpToDate/Inconsistent（正在同步，数据还没有一致）</li>
+<li>UpToDate/UpToDate （同步完成，数据一致）</li>
+</ul>
+</li>
+<li>ns是网络传输的数据包<ul>
+<li>以K为字节</li>
+</ul>
+</li>
+<li>dw 是磁盘写操作</li>
+<li>dr 是磁盘读操作</li>
+<li>of 运行中（过时的）模块号码</li>
+<li>pe 待解决的 模块号码</li>
+<li>ua 未答复的 模块号码（最好为0）</li>
+</ul>
+</blockquote>
+<h2 id="DRDB模拟测试"><a href="#DRDB模拟测试" class="headerlink" title="DRDB模拟测试"></a>DRDB模拟测试</h2><p>将主节点设置为备节点</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root@itspafcmail01 ~]# umount /maildata/</div><div class="line">[root@itspafcmail01 ~]# drbdadm secondary data</div></pre></td></tr></table></figure>
+<p>将备用节点设置为主节点</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root@itspafcmail02 ~]# drbdadm primary data</div><div class="line">[root@itspafcmail02 ~]# mount /dev/drbd0 /maildata/</div></pre></td></tr></table></figure>
+<p>测试完毕后，恢复原来的主备关系</p>
+<h2 id="禁止DRBD开机启动两端都需要禁用，由HA控制"><a href="#禁止DRBD开机启动两端都需要禁用，由HA控制" class="headerlink" title="禁止DRBD开机启动两端都需要禁用，由HA控制"></a>禁止DRBD开机启动两端都需要禁用，由HA控制</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[root@itspafcmail01 ~]# chkconfig --list drbd</div><div class="line">drbd               0:off    1:off    2:off    3:off    4:off    5:off    6:off</div><div class="line">[root@itspafcmail02 ~]# chkconfig --list drbd</div><div class="line">drbd               0:off    1:off    2:off    3:off    4:off    5:off    6:off</div></pre></td></tr></table></figure>
+<h2 id="drbd常见问题"><a href="#drbd常见问题" class="headerlink" title="drbd常见问题"></a>drbd常见问题</h2><blockquote>
+<p>问题1 DRBD依赖于基于其内核模块，需手工加载</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">modprobe drbd</div></pre></td></tr></table></figure>
+<blockquote>
+<p>问题2 命令drbdadm up all 相当于如下命令的组合：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">drbdadm attach all //Attach to backing device.</div><div class="line">drbdadm syncer all //Set synchronization parameters.</div><div class="line">drbdadm connect all //drbdadm connect resource</div></pre></td></tr></table></figure>
+<blockquote>
+<p>问题3 处理drbd裂脑问题（ro:Secondary/Unknown）</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">裂脑的状态为：ro：Secondary/Unknown</div><div class="line"></div><div class="line">可选择一个节点作为secondary，在该机器上执行</div><div class="line"></div><div class="line">drbdadm secondrat all #&lt;==备节点设置为被</div><div class="line"></div><div class="line">drbdadm dis`connect all</div><div class="line"></div><div class="line">drbdadm -- --discard-my-data connect all #&lt;==本端放弃数据连接</div><div class="line"></div><div class="line">有时也需要在另一个节点上执行</div><div class="line"></div><div class="line">drbdadm connect all</div></pre></td></tr></table></figure>
+<h1 id="HeartBeat服务"><a href="#HeartBeat服务" class="headerlink" title="HeartBeat服务"></a>HeartBeat服务</h1><h2 id="安装heartbeat"><a href="#安装heartbeat" class="headerlink" title="安装heartbeat"></a>安装heartbeat</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">[root@itspafcmail01 ~]# mkdir /opt/Tools/</div><div class="line">[root@itspafcmail01 ~]# cd /opt/Tools/</div><div class="line">[root@itspafcmail01 Tools]# wget http://mirrors.ustc.edu.cn/fedora/epel/6/x86_64/epel-release-6-8.noarch.rpm</div><div class="line"></div><div class="line">[root@itspafcmail01 Tools]# rpm -ivh epel-release-6-8.noarch.rpm</div><div class="line">[root@itspafcmail01 Tools]# rpm -qa|grep epel</div><div class="line">[root@itspafcmail01 Tools]# yum install heartbeat* -y</div></pre></td></tr></table></figure>
+<p>_#在red-hat下直接安装会报错</p>
+<p>#修改下面两个文件将https变为http即可解决_</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root@itspafcmail01 yum.repos.d]# ls epel* </div><div class="line">epel.repo  epel-testing.repo</div></pre></td></tr></table></figure>
+<blockquote>
+<p>由于客户方的操作系统不是我们安装的，存在很多的依赖关系，我这里选择在本地yum安装的时候保留一份，然后直接放到生产的机器上</p>
+</blockquote>
+<h2 id="配置文件说明"><a href="#配置文件说明" class="headerlink" title="配置文件说明"></a>配置文件说明</h2><h3 id="配置文件："><a href="#配置文件：" class="headerlink" title="配置文件："></a>配置文件：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/etc/ha.d/</div></pre></td></tr></table></figure>
+<h3 id="启动脚本："><a href="#启动脚本：" class="headerlink" title="启动脚本："></a>启动脚本：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/etc/init.d/heartbeat</div></pre></td></tr></table></figure>
+<h3 id="资源控制目录："><a href="#资源控制目录：" class="headerlink" title="资源控制目录："></a>资源控制目录：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/etc/ha.d/resource.d &lt;==脚本，控制资源的脚本，被HA调用。也可以放/etc/init.d/下</div></pre></td></tr></table></figure>
+<h3 id="拷贝配置文件"><a href="#拷贝配置文件" class="headerlink" title="拷贝配置文件"></a>拷贝配置文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root@itspafcmail01 ha.d]# cd /usr/share/doc/heartbeat-3.0.4/</div><div class="line">[root@itspafcmail01 heartbeat-3.0.4]# cp authkeys ha.cf haresources /etc/ha.d/</div></pre></td></tr></table></figure>
+<h3 id="配置ha-cf文件"><a href="#配置ha-cf文件" class="headerlink" title="配置ha.cf文件"></a>配置ha.cf文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">#日志配置</div><div class="line">debugfile /var/log/ha-debug</div><div class="line">logfile    /var/log/ha-log</div><div class="line">logfacility    local0</div><div class="line"></div><div class="line">#基础参数</div><div class="line">keepalive 2</div><div class="line">deadtime 30</div><div class="line">warntime 10</div><div class="line">initdead 120#串口#serial /dev/ttys0</div><div class="line"></div><div class="line">#选择多播的方式，需要改动的仅有eth2这块网卡，端口694上</div><div class="line">mcast eth4 225.0.0.7 694 1 0</div><div class="line"></div><div class="line">auto_failback on</div><div class="line">#两台服务器主机名node    itspafcmail01node    itspafcmail02</div><div class="line">crm    no</div></pre></td></tr></table></figure>
+<h3 id="配置authkey文件"><a href="#配置authkey文件" class="headerlink" title="配置authkey文件"></a>配置authkey文件</h3><p>生成sha1值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[root@itspafcmail01 ha.d]# echo turbo423|sha1sum7d44656e1b9fac646608cfa1452453eb7c0710d0  -</div></pre></td></tr></table></figure>
+<p>写入配置文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root@itspafcmail01 ha.d]# cat authkeys</div><div class="line">auth 11 sha1 7d44656e1b9fac646608cfa1452453eb7c0710d0</div></pre></td></tr></table></figure>
+<p>配置权限600</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[root@itspafcmail01 ha.d]# chmod 600 authkeys</div></pre></td></tr></table></figure>
+<h3 id="配置haresource文件"><a href="#配置haresource文件" class="headerlink" title="配置haresource文件"></a>配置haresource文件</h3><blockquote>
+<p>#/etc/ha.d/resource.d/IPaddr 实际就是一个脚本，用于服务启动后优先绑定在哪个IP上 itspafcmail01 IPaddr::192.168.2.10/24/eth4 itspafcmail02<br>IPaddr::192.168.2.11/24/eth4 配置说明：</p>
+<p>#itspafcmail01 为主机名，表示初始状态会在itspafcmail01 绑定IP 10.0.0.17</p>
+<p>#IPaddr为heartbeat配置IP的默认脚本，其后的IP等都是脚本的参数</p>
+<p>#192.168.2.1/24/eth4为集群对外服务的VIP，初始启动在data-1-1上，24为子网掩码，eth0为ip绑定的实际物理网卡，为heartbeat提供对外服务的通信接口。</p>
+</blockquote>
+<h2 id="启动测试"><a href="#启动测试" class="headerlink" title="启动测试"></a>启动测试</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">[root@itspafcmail01 ha.d]# /etc/init.d/heartbeat start</div><div class="line">Starting High-Availability services: INFO:  Resource is stopped</div><div class="line">INFO:  Resource is stopped</div><div class="line">Done.</div><div class="line">[root@itspafcmail01 ha.d]# ps auxw|grep heart</div><div class="line">root     13193  0.0  0.0  50124  7168 ?        SLs  16:13   0:00 heartbeat: master control process</div><div class="line">root     13197  0.0  0.0  49944  6988 ?        SL   16:13   0:00 heartbeat: FIFO reader       </div><div class="line">root     13198  0.0  0.0  49940  6984 ?        SL   16:13   0:00 heartbeat: write: mcast eth4 </div><div class="line">root     13199  0.0  0.0  49940  6984 ?        SL   16:13   0:00 heartbeat: read: mcast eth4</div></pre></td></tr></table></figure>
+<h2 id="检查IP初始启动情况"><a href="#检查IP初始启动情况" class="headerlink" title="检查IP初始启动情况"></a>检查IP初始启动情况</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root@itspafcmail01 ha.d]#  ip a|grep -E &quot;192.168.2.10|192.168.2.11&quot;</div><div class="line">    inet 192.168.2.10/24 brd 192.168.2.255 scope global secondary eth4</div></pre></td></tr></table></figure>
+<h2 id="接管的过程："><a href="#接管的过程：" class="headerlink" title="接管的过程："></a>接管的过程：</h2><p>模拟主机down机，看看VIP是否会被备机接管</p>
+<p>成功则表示heartbeat部署正常</p>
+<h2 id="Heartbeat-控制drbd高可用的实现"><a href="#Heartbeat-控制drbd高可用的实现" class="headerlink" title="Heartbeat 控制drbd高可用的实现"></a>Heartbeat 控制drbd高可用的实现</h2><p>Ha本生有一个脚本用于控制drbd的即drbddisk启动drbd也可以用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/etc/ha.d/resource.d/drbddisk data start #这样执行之后就直接选主了</div></pre></td></tr></table></figure>
+<p>haresoures写法如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">itspafcmail01 drbddisk::data IPaddr::192.168.2.10/24/eth4</div><div class="line">itspafcmail02 IPaddr::192.168.2.11/24/eth4</div></pre></td></tr></table></figure>
+<blockquote>
+<p>关于drbd选主的问题，在drbd都是secondary的情况下ha可以根据haresoures的内容进行选主，确保先把两边的drbd都启动好，再启动ha</p>
+</blockquote>
+<h3 id="通过脚本挂载和卸载drbd"><a href="#通过脚本挂载和卸载drbd" class="headerlink" title="通过脚本挂载和卸载drbd"></a>通过脚本挂载和卸载drbd</h3><p>手动挂载的形式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/etc./ha.d/resource.d/Filesystem /dev/drbd0 /maildata ext4 start</div></pre></td></tr></table></figure>
+<p>手动卸载的形式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/etc./ha.d/resource.d/Filesystem /dev/drbd0 /maildata ext4 start</div></pre></td></tr></table></figure>
+<p>haresoures写法如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">itspafcmail01 drbddisk::data Filesystem::/dev/drbd0::/maildata::ext4  IPaddr::192.168.2.10/24/eth4</div><div class="line">itspafcmail02 IPaddr::192.168.2.11/24/eth4</div><div class="line">itspafcmail01 drbddisk::data Filesystem::/dev/drbd0::/maildata::ext4  IPaddr::192.168.2.10/24/eth4</div></pre></td></tr></table></figure>
+<p>上述命令等同于：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">/etc./ha.d/resource.d/drbddisk data start</div><div class="line">/etc./ha.d/resource.d/Filesystem /dev/drbd0 /maildata ext4 start</div><div class="line">/etc./ha.d/resource.d/IPaddr 192.168.2.10/24/eth4 start</div></pre></td></tr></table></figure>
+<h3 id="关于停止的顺序"><a href="#关于停止的顺序" class="headerlink" title="关于停止的顺序"></a>关于停止的顺序</h3><p>先停VIP 再停挂载 最后改角色为secondary<br>killall -9 heartbeat的情况需要清理释放IP地址<br>ip addr del 192.168.2.11/24 dev eth4</p>
+<h2 id="关于Primary-Unknow状态的修复"><a href="#关于Primary-Unknow状态的修复" class="headerlink" title="关于Primary/Unknow状态的修复"></a>关于Primary/Unknow状态的修复</h2><p>手工处理裂脑问题，主机宕机后的修复</p>
+<p>自动接管参数开启<br>1，itspafcmail01 主不能自动开启heartbeat,drbd（#auto_failback on）。<br>2，itspafcmail01 主故障备接管后,备对外提供服务，写数据（实现模拟100个文件）。<br>itspafcmail02 备节点提升为主节点后的状态（Primary/Unknow ）<br>3，itspafcmail01 主修复了，不要开启heartbeat及drbd<br>手工处理：</p>
+<ul>
+<li>确保心跳线通信正常</li>
+<li>drbdadm up data #此时itspafcmail01状态（Secondary /Primary ）</li>
+<li>同步完成启动heartbeat（/etc/init.d/heatbeat start<ul>
+<li>itspafcmail01 (Primary/Secondary )</li>
+<li>itspafcmail02 (Secondary /Primary )</li>
+</ul>
+</li>
+</ul>
+<p><strong>建议操作：自动接管参数关闭</strong><br>1，itspafcmail01 主不能自动开启heartbeat,drbd（auto_failback off）。<br>2，itspafcmail01 主故障备接管后,备对外提供服务，写数据（实现模拟100个文件）。<br>itspafcmail02 备节点提升为主节点后的状态（Primary/Unknow ）<br>3，itspafcmail01 主修复了，不要开启heartbeat及drbd<br>手工处理：</p>
+<ul>
+<li>确保心跳线通信正常</li>
+<li>drbdadm up data #此时itspafcmail01状态（Secondary /Primary ）</li>
+<li>此时数据流从itspafcmail02 流向itspafcmail01</li>
+<li>itspafcmail01启动heartbeat itspafcmail01（Secondary /Primary ）</li>
+<li>itspafcmail02 /usr/share/heartbeat/hb_standby （服务器回切）</li>
+<li>itspafcmail01 （Primary /Secondary ）</li>
+</ul>
+<h1 id="DRBD主从自动切换测试"><a href="#DRBD主从自动切换测试" class="headerlink" title="DRBD主从自动切换测试"></a>DRBD主从自动切换测试</h1><p>首先启动node1的heartbeat，接着再启动node2的heartbeat。<br>然后启动node1上的drbd，接着启动node2上的drbd</p>
+<h1 id="Heartbeat控制turbomail"><a href="#Heartbeat控制turbomail" class="headerlink" title="Heartbeat控制turbomail"></a>Heartbeat控制turbomail</h1><p>编写资源脚本<br>主从两台机都要有<br>在资源目录下创建turbomail脚本</p>
+<blockquote>
+<p>/etc/ha.d/resource.d/turbomail<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">#Author      :Adair</div><div class="line">#Filename  :turbomail</div><div class="line">#chkconfig :2345 54 65</div><div class="line">SUCC=&quot;\033[32m&quot; </div><div class="line">END=&quot;\033[0m&quot;</div><div class="line">turbomail=&quot;/turbomail&quot;cd $turbomailif [ $# -ne 1 ]</div><div class="line">thenecho &quot;USAGE:$0 &#123;start|stop|restart&#125;&quot;exit 1</div><div class="line">fi</div><div class="line"></div><div class="line">if [ &quot;$1&quot; = &quot;start&quot; ]</div><div class="line">then</div><div class="line">         nohup ./startall.sh &gt;nohup.txt 2&gt;&amp;1</div><div class="line">         echo -e &quot;Start turbomail...        $&#123;SUCC&#125; [OK] $&#123;END&#125;&quot; </div><div class="line">elif [ &quot;$1&quot; = &quot;stop&quot; ]</div><div class="line">then</div><div class="line">         nohup ./shutdownall.sh &gt;nohup.txt 2&gt;&amp;1</div><div class="line">         echo -e &quot;Stop turbomail...        $&#123;SUCC&#125; [OK] $&#123;END&#125;&quot; </div><div class="line">elif [ &quot;$1&quot; = &quot;restart&quot; ]</div><div class="line">then</div><div class="line">         nohup ./shutdownall.sh &gt;nohup.txt 2&gt;&amp;1</div><div class="line">         echo -e &quot;Stop turbomail...        $&#123;SUCC&#125; [OK] $&#123;END&#125;&quot;</div><div class="line">         nohup ./startall.sh &gt;nohup.txt 2&gt;&amp;1</div><div class="line">         echo -e &quot;Start turbomail...        $&#123;SUCC&#125; [OK] $&#123;END&#125;&quot;    </div><div class="line">fi</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p>主的haresource文件变为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">itspafcmail01 IPaddr::10.0.0.12/24/eth0 drbddisk::data Filesystem::/dev/drbd0::/maildata::ext4 turbomail</div></pre></td></tr></table></figure>
+<p>备的haresource文件变为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">itspafcmail02 IPaddr::10.0.0.12/24/eth0 drbddisk::data Filesystem::/dev/drbd0::/maildata::ext4 turbomail</div></pre></td></tr></table></figure>
+<p>测试模拟和drbd的类似</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/uploads/wechat-reward-image.png" alt="Zhu Jie WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/uploads/alipay-reward-image.png" alt="Zhu Jie Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/项目实施/" rel="tag"># 项目实施</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/18/yum方式安装openldap-phppldapadmin-lam/" rel="next" title="yum方式安装openldap,phppldapadmin">
+                <i class="fa fa-chevron-left"></i> yum方式安装openldap,phppldapadmin
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.png"
+               alt="Zhu Jie" />
+          <p class="site-author-name" itemprop="name">Zhu Jie</p>
+           
+              <p class="site-description motion-element" itemprop="description">我爱你，是以悲剧形式肯定人生。</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/zhu-jie" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/your-user-name" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/p/1005055456788693/home?from=page_100505&mod=TAB&is_all=1#place" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#环境"><span class="nav-text">环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DRBD服务"><span class="nav-text">DRBD服务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装drbd"><span class="nav-text">安装drbd</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置文件"><span class="nav-text">配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主节点操作"><span class="nav-text">主节点操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化DRBD的metadata（Create-device-metadata-）-》主机"><span class="nav-text">初始化DRBD的metadata（Create device metadata.）==》主机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动并查看"><span class="nav-text">启动并查看</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#备点操作"><span class="nav-text">备点操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#初始化DRBD的metadata（Create-device-metadata-）-》备机"><span class="nav-text">初始化DRBD的metadata（Create device metadata.）==》备机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动并查看-1"><span class="nav-text">启动并查看</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#同步数据"><span class="nav-text">同步数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#格式化并挂载"><span class="nav-text">格式化并挂载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#状态说明"><span class="nav-text">状态说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DRDB模拟测试"><span class="nav-text">DRDB模拟测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#禁止DRBD开机启动两端都需要禁用，由HA控制"><span class="nav-text">禁止DRBD开机启动两端都需要禁用，由HA控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#drbd常见问题"><span class="nav-text">drbd常见问题</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HeartBeat服务"><span class="nav-text">HeartBeat服务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装heartbeat"><span class="nav-text">安装heartbeat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置文件说明"><span class="nav-text">配置文件说明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置文件："><span class="nav-text">配置文件：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动脚本："><span class="nav-text">启动脚本：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#资源控制目录："><span class="nav-text">资源控制目录：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拷贝配置文件"><span class="nav-text">拷贝配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置ha-cf文件"><span class="nav-text">配置ha.cf文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置authkey文件"><span class="nav-text">配置authkey文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置haresource文件"><span class="nav-text">配置haresource文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动测试"><span class="nav-text">启动测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#检查IP初始启动情况"><span class="nav-text">检查IP初始启动情况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#接管的过程："><span class="nav-text">接管的过程：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Heartbeat-控制drbd高可用的实现"><span class="nav-text">Heartbeat 控制drbd高可用的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#通过脚本挂载和卸载drbd"><span class="nav-text">通过脚本挂载和卸载drbd</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于停止的顺序"><span class="nav-text">关于停止的顺序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于Primary-Unknow状态的修复"><span class="nav-text">关于Primary/Unknow状态的修复</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DRBD主从自动切换测试"><span class="nav-text">DRBD主从自动切换测试</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Heartbeat控制turbomail"><span class="nav-text">Heartbeat控制turbomail</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhu Jie</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "db48cc4b2112442ba8f3c76c14a9d22f",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/exturl.js?v=5.1.1"></script>
+
+
+
+</body>
+</html>
