@@ -76,7 +76,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="shell,脚本," />
+  <meta name="keywords" content="Ubuntu," />
 
 
 
@@ -92,17 +92,20 @@
 
 
 
-<meta name="description" content="&amp;emsp;&amp;emsp;通常情况下vmware克隆后的机器网卡都会发生变化，对于有强迫症状的人是一件很痛苦的事儿，所以在每次克隆机器之后可以执行下面的脚本，以便将网卡改为eth012345678910111213#!/bin/bashif [ $# -ne 1 ]thenecho &quot;USAGE:$0 HOSTNAME&quot;exit 1fiRULES_PATH=&quot;/etc/udev/rules.d/70">
-<meta name="keywords" content="shell,脚本">
+<meta name="description" content="安装1sudo apt-get install openssh-server 启动1sudo service ssh start 查询服务启动状态123sudo ps -e | grep ssh或者sudo service ssh status 配置开机启动1sudo sysv-rc-conf  把上面四项都选上。 修改默认端口1sudo vim /etc/ssh/sshd_config 找到Po">
+<meta name="keywords" content="Ubuntu">
 <meta property="og:type" content="article">
-<meta property="og:title" content="解决VMWARE克隆后网卡不为eth0的问题">
-<meta property="og:url" content="http://blog.cnjie.net/2017/08/05/解决VMWARE克隆后网卡不为eth0的问题/index.html">
+<meta property="og:title" content="Ubuntu 16.04开启SSH服务">
+<meta property="og:url" content="http://blog.cnjie.net/2018/02/04/Ubuntu-16-04开启SSH服务/index.html">
 <meta property="og:site_name" content="Zhu&#39;s Blog">
-<meta property="og:description" content="&amp;emsp;&amp;emsp;通常情况下vmware克隆后的机器网卡都会发生变化，对于有强迫症状的人是一件很痛苦的事儿，所以在每次克隆机器之后可以执行下面的脚本，以便将网卡改为eth012345678910111213#!/bin/bashif [ $# -ne 1 ]thenecho &quot;USAGE:$0 HOSTNAME&quot;exit 1fiRULES_PATH=&quot;/etc/udev/rules.d/70">
-<meta property="og:updated_time" content="2017-08-05T14:41:24.000Z">
+<meta property="og:description" content="安装1sudo apt-get install openssh-server 启动1sudo service ssh start 查询服务启动状态123sudo ps -e | grep ssh或者sudo service ssh status 配置开机启动1sudo sysv-rc-conf  把上面四项都选上。 修改默认端口1sudo vim /etc/ssh/sshd_config 找到Po">
+<meta property="og:image" content="http://blog.cnjie.net/uploads/ssh.png">
+<meta property="og:image" content="http://blog.cnjie.net/uploads/ssh2.png">
+<meta property="og:updated_time" content="2018-02-04T08:08:26.246Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="解决VMWARE克隆后网卡不为eth0的问题">
-<meta name="twitter:description" content="&amp;emsp;&amp;emsp;通常情况下vmware克隆后的机器网卡都会发生变化，对于有强迫症状的人是一件很痛苦的事儿，所以在每次克隆机器之后可以执行下面的脚本，以便将网卡改为eth012345678910111213#!/bin/bashif [ $# -ne 1 ]thenecho &quot;USAGE:$0 HOSTNAME&quot;exit 1fiRULES_PATH=&quot;/etc/udev/rules.d/70">
+<meta name="twitter:title" content="Ubuntu 16.04开启SSH服务">
+<meta name="twitter:description" content="安装1sudo apt-get install openssh-server 启动1sudo service ssh start 查询服务启动状态123sudo ps -e | grep ssh或者sudo service ssh status 配置开机启动1sudo sysv-rc-conf  把上面四项都选上。 修改默认端口1sudo vim /etc/ssh/sshd_config 找到Po">
+<meta name="twitter:image" content="http://blog.cnjie.net/uploads/ssh.png">
 
 
 
@@ -130,14 +133,14 @@
 
 
 
-  <link rel="canonical" href="http://blog.cnjie.net/2017/08/05/解决VMWARE克隆后网卡不为eth0的问题/"/>
+  <link rel="canonical" href="http://blog.cnjie.net/2018/02/04/Ubuntu-16-04开启SSH服务/"/>
 
 
 
 
 
 
- <title>解决VMWARE克隆后网卡不为eth0的问题 | Zhu's Blog</title>
+ <title>Ubuntu 16.04开启SSH服务 | Zhu's Blog</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -297,7 +300,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://blog.cnjie.net/2017/08/05/解决VMWARE克隆后网卡不为eth0的问题/">
+    <link itemprop="mainEntityOfPage" href="http://blog.cnjie.net/2018/02/04/Ubuntu-16-04开启SSH服务/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhu Jie">
@@ -314,7 +317,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">解决VMWARE克隆后网卡不为eth0的问题</h1>
+          <h1 class="post-title" itemprop="name headline">Ubuntu 16.04开启SSH服务</h1>
         
 
         <div class="post-meta">
@@ -326,8 +329,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-05T17:44:25+08:00">
-                2017-08-05
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-04T15:57:50+08:00">
+                2018-02-04
               </time>
             
 
@@ -367,7 +370,7 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a class="cloud-tie-join-count" href="/2017/08/05/解决VMWARE克隆后网卡不为eth0的问题/#comments" itemprop="discussionUrl">
+                <a class="cloud-tie-join-count" href="/2018/02/04/Ubuntu-16-04开启SSH服务/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count join-count" itemprop="commentCount"></span>
                 </a>
               </span>
@@ -393,8 +396,20 @@
       
 
       
-        <p>&emsp;&emsp;通常情况下vmware克隆后的机器网卡都会发生变化，对于有强迫症状的人是一件很痛苦的事儿，所以在每次克隆机器之后可以执行下面的脚本，以便将网卡改为eth0<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"><span class="keyword">if</span> [ <span class="variable">$#</span> -ne 1 ]</div><div class="line"><span class="keyword">then</span></div><div class="line"><span class="built_in">echo</span> <span class="string">"USAGE:<span class="variable">$0</span> HOSTNAME"</span><span class="built_in">exit</span> 1</div><div class="line"><span class="keyword">fi</span></div><div class="line">RULES_PATH=<span class="string">"/etc/udev/rules.d/70-persistent-net.rules"</span></div><div class="line">ETH0_PATH=<span class="string">"/etc/sysconfig/network-scripts/ifcfg-eth0"</span></div><div class="line">MAC=`dmesg |grep eth0|grep -E -o <span class="string">"[0-9a-fA-F]&#123;2&#125;(:[0-9a-fA-F]&#123;2&#125;)&#123;5&#125;"</span>`</div><div class="line">RULES_MAC=`cat /etc/udev/rules.d/70-persistent-net.rules |grep -E -o <span class="string">"[0-9a-fA-F]&#123;2&#125;(:[0-9a-fA-F]&#123;2&#125;)&#123;5&#125;"</span>`</div><div class="line">ETH0_MAC=`cat /etc/sysconfig/network-scripts/ifcfg-eth0 |grep -E -o <span class="string">"[0-9a-fA-F]&#123;2&#125;(:[0-9a-fA-F]&#123;2&#125;)&#123;5&#125;"</span>`</div><div class="line">sed -i <span class="string">"s/<span class="variable">$RULES_MAC</span>/<span class="variable">$MAC</span>/g"</span> <span class="variable">$RULES_PATH</span></div><div class="line">sed -i <span class="string">"s/<span class="variable">$ETH0_MAC</span>/<span class="variable">$MAC</span>/g"</span> <span class="variable">$ETH0_PATH</span></div><div class="line">sed -i <span class="string">"s/localhost.localdomain/<span class="variable">$1</span>/g"</span> /etc/sysconfig/network</div></pre></td></tr></table></figure></p>
-<p>执行方式：执行的时候需要传入你需要设定的主机名<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sh Change.sh youhostname</div></pre></td></tr></table></figure></p>
+        <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install openssh-server</div></pre></td></tr></table></figure>
+<h1 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo service ssh start</div></pre></td></tr></table></figure>
+<h1 id="查询服务启动状态"><a href="#查询服务启动状态" class="headerlink" title="查询服务启动状态"></a>查询服务启动状态</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo ps -e | grep ssh</div><div class="line">或者</div><div class="line">sudo service ssh status</div></pre></td></tr></table></figure>
+<h1 id="配置开机启动"><a href="#配置开机启动" class="headerlink" title="配置开机启动"></a>配置开机启动</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo sysv-rc-conf</div></pre></td></tr></table></figure>
+<p><img src="/uploads/ssh.png" alt="Alt text"></p>
+<p>把上面四项都选上。</p>
+<h1 id="修改默认端口"><a href="#修改默认端口" class="headerlink" title="修改默认端口"></a>修改默认端口</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo vim /etc/ssh/sshd_config</div></pre></td></tr></table></figure>
+<p>找到Port 22，然后改成相应的端口。建议先保留22端口的。后面连接成功了之后再删除22端口，保险起见。</p>
+<p><img src="/uploads/ssh2.png" alt="Alt text"></p>
+<h2 id="重启服务"><a href="#重启服务" class="headerlink" title="重启服务"></a>重启服务</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo service ssh restart</div></pre></td></tr></table></figure>
+<h2 id="查看状态"><a href="#查看状态" class="headerlink" title="查看状态"></a>查看状态</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">netstat -an | grep <span class="string">"LISTEN "</span></div></pre></td></tr></table></figure>
+<h2 id="用端口进行连接"><a href="#用端口进行连接" class="headerlink" title="用端口进行连接"></a>用端口进行连接</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh username@ip -p 50022</div></pre></td></tr></table></figure>
+<p>连接成功之后记得把22端口去除。 </p>
+<p><strong><em>注意：如果开通了ufw防火墙的要加入规则，默认端口为22。在Ubuntu下防火墙建议使用ufw进行管理，主要是方便操作。</em></strong></p>
 
       
     </div>
@@ -445,9 +460,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/shell/" rel="tag"># shell</a>
-          
-            <a href="/tags/脚本/" rel="tag"># 脚本</a>
+            <a href="/tags/Ubuntu/" rel="tag"># Ubuntu</a>
           
         </div>
       
@@ -460,8 +473,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/08/05/Red_Hat配置清华源/" rel="next" title="Red_Hat配置清华源">
-                <i class="fa fa-chevron-left"></i> Red_Hat配置清华源
+              <a href="/2018/02/04/Ubuntu16-04配置静态IP/" rel="next" title="Ubuntu16.04配置静态IP">
+                <i class="fa fa-chevron-left"></i> Ubuntu16.04配置静态IP
               </a>
             
           </div>
@@ -469,10 +482,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/02/04/Ubuntu16-04配置静态IP/" rel="prev" title="Ubuntu16.04配置静态IP">
-                Ubuntu16.04配置静态IP <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -544,8 +553,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/avatar.png"
@@ -636,6 +654,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装"><span class="nav-text">安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#启动"><span class="nav-text">启动</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#查询服务启动状态"><span class="nav-text">查询服务启动状态</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置开机启动"><span class="nav-text">配置开机启动</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#修改默认端口"><span class="nav-text">修改默认端口</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#重启服务"><span class="nav-text">重启服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看状态"><span class="nav-text">查看状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用端口进行连接"><span class="nav-text">用端口进行连接</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
