@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>http://blog.cnjie.net/2017/06/11/%E5%86%8D%E8%A7%81%E5%AE%89%E5%8D%93/</loc>
+    <lastmod>2018-03-09T13:37:22.554Z</lastmod>
+    <data>
+        <display>
+        <title>再见，安卓</title>
+        <pubTime>2017-06-11T04:14:00.000Z</pubTime>
+        
+        <tag>情怀</tag>
+         
+         
+           
+             
+              <breadCrumb title="情感" url="http://blog.cnjie.net/categories/%E6%83%85%E6%84%9F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://blog.cnjie.net/2018/02/04/python-%E5%9F%BA%E7%A1%80/</loc>
     <lastmod>2018-02-24T13:40:56.670Z</lastmod>
     <data>
@@ -226,26 +246,6 @@
            
              
               <breadCrumb title="Linux" url="http://blog.cnjie.net/categories/Linux/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.cnjie.net/2017/06/11/%E5%86%8D%E8%A7%81%E5%AE%89%E5%8D%93/</loc>
-    <lastmod>2017-06-18T07:34:49.000Z</lastmod>
-    <data>
-        <display>
-        <title>再见，安卓</title>
-        <pubTime>2017-06-11T04:14:00.000Z</pubTime>
-        
-        <tag>情怀</tag>
-         
-         
-           
-             
-              <breadCrumb title="情感" url="http://blog.cnjie.net/categories/%E6%83%85%E6%84%9F/"/>
           
         </display>
     </data>
