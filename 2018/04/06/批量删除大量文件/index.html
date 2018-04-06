@@ -76,7 +76,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="shell,脚本," />
+  <meta name="keywords" content="命令," />
 
 
 
@@ -92,17 +92,17 @@
 
 
 
-<meta name="description" content="Red-Hat使用清华源具体操作步骤：12345# cd /etc/yum.repos.d/# cp rhel-source.repo rhel-source.repo.bak# &amp;gt; rhel-source.repo #清空，然后将下面的一段复制进去即可# yum clean all# yum makecache 备份原有的yum源，将里面的内容改为下面的内容即可123456[rhel-so">
-<meta name="keywords" content="shell,脚本">
+<meta name="description" content="批量删除大量文件  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;当正常进行删除是，会出现如下报错&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;“Argument list too long” &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;使用如下">
+<meta name="keywords" content="命令">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Red_Hat配置清华源">
-<meta property="og:url" content="http://blog.cnjie.net/2017/08/05/Red_Hat配置清华源/index.html">
+<meta property="og:title" content="批量删除大量文件">
+<meta property="og:url" content="http://blog.cnjie.net/2018/04/06/批量删除大量文件/index.html">
 <meta property="og:site_name" content="Zhu&#39;s Blog">
-<meta property="og:description" content="Red-Hat使用清华源具体操作步骤：12345# cd /etc/yum.repos.d/# cp rhel-source.repo rhel-source.repo.bak# &amp;gt; rhel-source.repo #清空，然后将下面的一段复制进去即可# yum clean all# yum makecache 备份原有的yum源，将里面的内容改为下面的内容即可123456[rhel-so">
-<meta property="og:updated_time" content="2017-08-05T14:33:53.000Z">
+<meta property="og:description" content="批量删除大量文件  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;当正常进行删除是，会出现如下报错&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;“Argument list too long” &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;使用如下">
+<meta property="og:updated_time" content="2018-04-06T12:45:42.183Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Red_Hat配置清华源">
-<meta name="twitter:description" content="Red-Hat使用清华源具体操作步骤：12345# cd /etc/yum.repos.d/# cp rhel-source.repo rhel-source.repo.bak# &amp;gt; rhel-source.repo #清空，然后将下面的一段复制进去即可# yum clean all# yum makecache 备份原有的yum源，将里面的内容改为下面的内容即可123456[rhel-so">
+<meta name="twitter:title" content="批量删除大量文件">
+<meta name="twitter:description" content="批量删除大量文件  &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;当正常进行删除是，会出现如下报错&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;“Argument list too long” &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;使用如下">
 
 
 
@@ -130,14 +130,14 @@
 
 
 
-  <link rel="canonical" href="http://blog.cnjie.net/2017/08/05/Red_Hat配置清华源/"/>
+  <link rel="canonical" href="http://blog.cnjie.net/2018/04/06/批量删除大量文件/"/>
 
 
 
 
 
 
- <title>Red_Hat配置清华源 | Zhu's Blog</title>
+ <title>批量删除大量文件 | Zhu's Blog</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -307,7 +307,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://blog.cnjie.net/2017/08/05/Red_Hat配置清华源/">
+    <link itemprop="mainEntityOfPage" href="http://blog.cnjie.net/2018/04/06/批量删除大量文件/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhu Jie">
@@ -324,7 +324,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Red_Hat配置清华源</h1>
+          <h1 class="post-title" itemprop="name headline">批量删除大量文件</h1>
         
 
         <div class="post-meta">
@@ -336,8 +336,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-05T16:54:25+08:00">
-                2017-08-05
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-06T20:37:36+08:00">
+                2018-04-06
               </time>
             
 
@@ -393,9 +393,12 @@
       
 
       
-        <h1 id="Red-Hat使用清华源"><a href="#Red-Hat使用清华源" class="headerlink" title="Red-Hat使用清华源"></a>Red-Hat使用清华源</h1><p>具体操作步骤：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"># cd /etc/yum.repos.d/</div><div class="line"># cp rhel-source.repo rhel-source.repo.bak</div><div class="line"># &gt; rhel-source.repo #清空，然后将下面的一段复制进去即可</div><div class="line"># yum clean all</div><div class="line"># yum makecache</div></pre></td></tr></table></figure></p>
-<p><strong>备份原有的yum源，将里面的内容改为下面的内容即可</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[rhel-source-beta]</div><div class="line">name=Red Hat Enterprise Linux <span class="variable">$releasever</span> Beta - <span class="variable">$basearch</span> - Source</div><div class="line">baseurl=http://mirrors.tuna.tsinghua.edu.cn/centos/6/os/x86_64/</div><div class="line">enabled=1</div><div class="line">gpgcheck=0</div><div class="line">gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-beta,file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release</div></pre></td></tr></table></figure></p>
-
+        <blockquote>
+<p>批量删除大量文件</p>
+</blockquote>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当正常进行删除是，会出现如下报错<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><em>“Argument list too long”</em></strong></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;使用如下方法可解决</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">ls | xargs -n 10 rm -fr ls</div><div class="line">find ./ -type f |xargs  -n 10 -I &#123;&#125; rm -rf &#123;&#125; \;</div><div class="line">find .  -name "*" | xargs -n 10 rm -rf '*'</div><div class="line"></div><div class="line">xargs -n 数目 按照10个分组进行删除</div></pre></td></tr></table></figure>
       
     </div>
 
@@ -445,9 +448,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/shell/" rel="tag"># shell</a>
-          
-            <a href="/tags/脚本/" rel="tag"># 脚本</a>
+            <a href="/tags/命令/" rel="tag"># 命令</a>
           
         </div>
       
@@ -460,8 +461,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/06/25/某项目部署/" rel="next" title="某项目部署">
-                <i class="fa fa-chevron-left"></i> 某项目部署
+              <a href="/2018/02/04/python-基础/" rel="next" title="python--[基础]">
+                <i class="fa fa-chevron-left"></i> python--[基础]
               </a>
             
           </div>
@@ -470,8 +471,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/08/05/解决VMWARE克隆后网卡不为eth0的问题/" rel="prev" title="解决VMWARE克隆后网卡不为eth0的问题">
-                解决VMWARE克隆后网卡不为eth0的问题 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/04/06/sort命令详解/" rel="prev" title="sort命令详解">
+                sort命令详解 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -544,17 +545,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/avatar.png"
@@ -636,22 +628,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Red-Hat使用清华源"><span class="nav-text">Red-Hat使用清华源</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
