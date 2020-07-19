@@ -4,6 +4,79 @@
 
     
   <url>
+    <loc>http://blog.cnjie.net/2017/08/05/Red_Hat%E9%85%8D%E7%BD%AE%E6%B8%85%E5%8D%8E%E6%BA%90/</loc>
+    <lastmod>2020-07-19T09:43:09.863Z</lastmod>
+    <data>
+        <display>
+        <title>Red_Hat配置清华源</title>
+        <pubTime>2017-08-05T08:54:25.000Z</pubTime>
+        
+        <tag>linux</tag>
+         
+        <tag>shell</tag>
+         
+        <tag>脚本</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://blog.cnjie.net/categories/%E6%8A%80%E6%9C%AF/"/>
+          
+             
+              <breadCrumb title="Linux" url="http://blog.cnjie.net/categories/%E6%8A%80%E6%9C%AF/Linux/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.cnjie.net/2018/02/04/Ubuntu-16-04%E5%BC%80%E5%90%AFSSH%E6%9C%8D%E5%8A%A1/</loc>
+    <lastmod>2020-07-19T09:43:04.598Z</lastmod>
+    <data>
+        <display>
+        <title>Ubuntu 16.04开启SSH服务</title>
+        <pubTime>2018-02-04T07:57:50.000Z</pubTime>
+        
+        <tag>Ubuntu</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://blog.cnjie.net/categories/%E6%8A%80%E6%9C%AF/"/>
+          
+             
+              <breadCrumb title="Linux" url="http://blog.cnjie.net/categories/%E6%8A%80%E6%9C%AF/Linux/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.cnjie.net/2018/02/04/Ubuntu16-04%E9%85%8D%E7%BD%AE%E9%9D%99%E6%80%81IP/</loc>
+    <lastmod>2020-07-19T09:42:59.447Z</lastmod>
+    <data>
+        <display>
+        <title>Ubuntu16.04配置静态IP</title>
+        <pubTime>2018-02-04T07:53:59.000Z</pubTime>
+        
+        <tag>Ubuntu</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://blog.cnjie.net/categories/%E6%8A%80%E6%9C%AF/"/>
+          
+             
+              <breadCrumb title="Linux" url="http://blog.cnjie.net/categories/%E6%8A%80%E6%9C%AF/Linux/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://blog.cnjie.net/2018/04/24/Windows%E9%98%B2%E7%81%AB%E5%A2%99/</loc>
     <lastmod>2020-07-19T09:37:59.636Z</lastmod>
     <data>
@@ -225,11 +298,11 @@
         <title>Linux批量替换文件内容3种方法</title>
         <pubTime>2017-06-18T08:54:25.000Z</pubTime>
         
+        <tag>linux</tag>
+         
         <tag>shell</tag>
          
         <tag>脚本</tag>
-         
-        <tag>linux</tag>
          
          
            
@@ -401,40 +474,16 @@
         <title>解决VMWARE克隆后网卡不为eth0的问题</title>
         <pubTime>2017-08-05T09:44:25.000Z</pubTime>
         
+        <tag>linux</tag>
+         
         <tag>shell</tag>
          
         <tag>脚本</tag>
-         
-        <tag>linux</tag>
          
          
            
              
               <breadCrumb title="工作" url="http://blog.cnjie.net/categories/%E5%B7%A5%E4%BD%9C/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.cnjie.net/2017/08/05/Red_Hat%E9%85%8D%E7%BD%AE%E6%B8%85%E5%8D%8E%E6%BA%90/</loc>
-    <lastmod>2020-07-19T08:34:48.189Z</lastmod>
-    <data>
-        <display>
-        <title>Red_Hat配置清华源</title>
-        <pubTime>2017-08-05T08:54:25.000Z</pubTime>
-        
-        <tag>shell</tag>
-         
-        <tag>脚本</tag>
-         
-        <tag>linux</tag>
-         
-         
-           
-             
-              <breadCrumb title="技术" url="http://blog.cnjie.net/categories/%E6%8A%80%E6%9C%AF/"/>
           
         </display>
     </data>
@@ -455,46 +504,6 @@
            
              
               <breadCrumb title="想法" url="http://blog.cnjie.net/categories/%E6%83%B3%E6%B3%95/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.cnjie.net/2018/02/04/Ubuntu-16-04%E5%BC%80%E5%90%AFSSH%E6%9C%8D%E5%8A%A1/</loc>
-    <lastmod>2020-07-19T08:28:57.189Z</lastmod>
-    <data>
-        <display>
-        <title>Ubuntu 16.04开启SSH服务</title>
-        <pubTime>2018-02-04T07:57:50.000Z</pubTime>
-        
-        <tag>Ubuntu</tag>
-         
-         
-           
-             
-              <breadCrumb title="技术" url="http://blog.cnjie.net/categories/%E6%8A%80%E6%9C%AF/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.cnjie.net/2018/02/04/Ubuntu16-04%E9%85%8D%E7%BD%AE%E9%9D%99%E6%80%81IP/</loc>
-    <lastmod>2020-07-19T08:28:53.662Z</lastmod>
-    <data>
-        <display>
-        <title>Ubuntu16.04配置静态IP</title>
-        <pubTime>2018-02-04T07:53:59.000Z</pubTime>
-        
-        <tag>Ubuntu</tag>
-         
-         
-           
-             
-              <breadCrumb title="技术" url="http://blog.cnjie.net/categories/%E6%8A%80%E6%9C%AF/"/>
           
         </display>
     </data>
