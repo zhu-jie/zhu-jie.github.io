@@ -3,46 +3,22 @@
 
 
     
-    
-    
-    
-    
-    
-    
   <url>
-    <loc>http://blog.cnjie.net/2016/03/12/Oracle11g-%E5%AE%A1%E8%AE%A1%E6%93%8D%E4%BD%9C/</loc>
-    <lastmod>2018-09-12T06:35:52.326Z</lastmod>
+    <loc>http://blog.cnjie.net/2017/06/11/%E5%86%8D%E8%A7%81%E5%AE%89%E5%8D%93/</loc>
+    <lastmod>2020-07-19T09:01:24.793Z</lastmod>
     <data>
         <display>
-        <title>Oracle11g 审计操作</title>
-        <pubTime>2016-03-12T14:21:28.000Z</pubTime>
+        <title>再见，安卓</title>
+        <pubTime>2017-06-11T04:14:00.000Z</pubTime>
         
-        <tag>Oracle</tag>
+        <tag>情怀</tag>
+         
+        <tag>心情</tag>
          
          
            
              
-              <breadCrumb title="数据库" url="http://blog.cnjie.net/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.cnjie.net/2015/07/30/Oracle%E5%91%BD%E4%BB%A4%E8%A1%8C%E9%97%AE%E9%A2%98/</loc>
-    <lastmod>2018-09-12T06:35:52.325Z</lastmod>
-    <data>
-        <display>
-        <title>解决ORACLE 11g命令行中上下左右无法使用的问题</title>
-        <pubTime>2015-07-30T02:57:43.000Z</pubTime>
-        
-        <tag>Oracle</tag>
-         
-         
-           
-             
-              <breadCrumb title="数据库" url="http://blog.cnjie.net/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+              <breadCrumb title="生活" url="http://blog.cnjie.net/categories/%E7%94%9F%E6%B4%BB/"/>
           
         </display>
     </data>
@@ -51,18 +27,20 @@
     
   <url>
     <loc>http://blog.cnjie.net/2018/04/06/sort%E5%91%BD%E4%BB%A4%E8%AF%A6%E8%A7%A3/</loc>
-    <lastmod>2018-09-12T06:35:52.324Z</lastmod>
+    <lastmod>2020-07-19T08:43:59.638Z</lastmod>
     <data>
         <display>
         <title>sort命令详解</title>
         <pubTime>2018-04-06T12:47:45.000Z</pubTime>
         
+        <tag>linux</tag>
+         
         <tag>命令</tag>
          
          
            
              
-              <breadCrumb title="Linux" url="http://blog.cnjie.net/categories/Linux/"/>
+              <breadCrumb title="技术" url="http://blog.cnjie.net/categories/%E6%8A%80%E6%9C%AF/"/>
           
         </display>
     </data>
@@ -70,81 +48,21 @@
 
     
   <url>
-    <loc>http://blog.cnjie.net/2018/02/04/%E9%85%8D%E7%BD%AE%E5%BD%93%E5%89%8D%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8%E5%9B%BD%E5%86%85pip%E6%BA%90/</loc>
-    <lastmod>2018-09-12T06:35:52.324Z</lastmod>
+    <loc>http://blog.cnjie.net/2018/04/24/Windows%E9%98%B2%E7%81%AB%E5%A2%99/</loc>
+    <lastmod>2020-07-19T08:43:52.680Z</lastmod>
     <data>
         <display>
-        <title>配置当前用户使用国内pip源</title>
-        <pubTime>2018-02-04T08:12:03.000Z</pubTime>
+        <title>Windows防火墙</title>
+        <pubTime>2018-04-24T06:35:40.000Z</pubTime>
         
-        <tag>python</tag>
+        <tag>Windows</tag>
+         
+        <tag>防火墙</tag>
          
          
            
              
-              <breadCrumb title="python开发" url="http://blog.cnjie.net/categories/python%E5%BC%80%E5%8F%91/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.cnjie.net/2016/01/15/Oracle%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AF%BC%E5%87%BA/</loc>
-    <lastmod>2018-09-12T06:35:52.323Z</lastmod>
-    <data>
-        <display>
-        <title>Oracle数据库导出</title>
-        <pubTime>2016-01-15T08:14:13.000Z</pubTime>
-        
-        <tag>Oracle</tag>
-         
-         
-           
-             
-              <breadCrumb title="数据库" url="http://blog.cnjie.net/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.cnjie.net/2017/08/05/Red_Hat%E9%85%8D%E7%BD%AE%E6%B8%85%E5%8D%8E%E6%BA%90/</loc>
-    <lastmod>2018-09-12T06:35:52.322Z</lastmod>
-    <data>
-        <display>
-        <title>Red_Hat配置清华源</title>
-        <pubTime>2017-08-05T08:54:25.000Z</pubTime>
-        
-        <tag>shell</tag>
-         
-        <tag>脚本</tag>
-         
-         
-           
-             
-              <breadCrumb title="Linux" url="http://blog.cnjie.net/categories/Linux/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.cnjie.net/2016/03/07/Tomcat-apr%E9%94%99%E8%AF%AF/</loc>
-    <lastmod>2018-09-12T06:35:52.321Z</lastmod>
-    <data>
-        <display>
-        <title>Tomcat apr错误</title>
-        <pubTime>2016-03-07T14:55:14.000Z</pubTime>
-        
-        <tag>web</tag>
-         
-         
-           
-             
-              <breadCrumb title="Web服务" url="http://blog.cnjie.net/categories/Web%E6%9C%8D%E5%8A%A1/"/>
+              <breadCrumb title="技术" url="http://blog.cnjie.net/categories/%E6%8A%80%E6%9C%AF/"/>
           
         </display>
     </data>
@@ -153,162 +71,20 @@
     
   <url>
     <loc>http://blog.cnjie.net/2018/04/06/%E6%89%B9%E9%87%8F%E5%88%A0%E9%99%A4%E5%A4%A7%E9%87%8F%E6%96%87%E4%BB%B6/</loc>
-    <lastmod>2018-09-12T06:35:52.320Z</lastmod>
+    <lastmod>2020-07-19T08:35:48.269Z</lastmod>
     <data>
         <display>
         <title>批量删除大量文件</title>
         <pubTime>2018-04-06T12:37:36.000Z</pubTime>
         
+        <tag>linux</tag>
+         
         <tag>命令</tag>
          
          
            
              
-              <breadCrumb title="Linux" url="http://blog.cnjie.net/categories/Linux/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.cnjie.net/2017/06/18/yum%E6%96%B9%E5%BC%8F%E5%AE%89%E8%A3%85openldap-phppldapadmin-lam/</loc>
-    <lastmod>2018-09-12T06:35:52.319Z</lastmod>
-    <data>
-        <display>
-        <title>yum方式安装openldap,phppldapadmin</title>
-        <pubTime>2017-06-18T09:11:10.000Z</pubTime>
-        
-        <tag>openldap</tag>
-         
-         
-           
-             
-              <breadCrumb title="Linux" url="http://blog.cnjie.net/categories/Linux/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.cnjie.net/2017/06/18/Linux%E6%89%B9%E9%87%8F%E6%9B%BF%E6%8D%A2%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B93%E7%A7%8D%E6%96%B9%E6%B3%95/</loc>
-    <lastmod>2018-09-12T06:35:52.318Z</lastmod>
-    <data>
-        <display>
-        <title>Linux批量替换文件内容3种方法</title>
-        <pubTime>2017-06-18T08:54:25.000Z</pubTime>
-        
-        <tag>shell</tag>
-         
-        <tag>脚本</tag>
-         
-         
-           
-             
-              <breadCrumb title="Linux" url="http://blog.cnjie.net/categories/Linux/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.cnjie.net/2016/03/09/Mac-OS%E4%B8%8B%E4%BF%AE%E5%A4%8DApp-Store%E6%97%A0%E6%B3%95%E7%99%BB%E9%99%86%E7%9A%84%E9%97%AE%E9%A2%98/</loc>
-    <lastmod>2018-09-12T06:35:52.317Z</lastmod>
-    <data>
-        <display>
-        <title>Mac OS下修复App Store无法登陆的问题</title>
-        <pubTime>2016-03-09T13:03:26.000Z</pubTime>
-        
-        <tag>Mac</tag>
-         
-         
-           
-             
-              <breadCrumb title="Mac OS" url="http://blog.cnjie.net/categories/Mac-OS/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.cnjie.net/2017/06/18/openldap%E6%BA%90%E7%A0%81%E5%AE%89%E8%A3%85/</loc>
-    <lastmod>2018-09-12T06:35:52.316Z</lastmod>
-    <data>
-        <display>
-        <title>openldap源码安装</title>
-        <pubTime>2017-06-18T09:10:33.000Z</pubTime>
-        
-        <tag>openldap</tag>
-         
-         
-           
-             
-              <breadCrumb title="Linux" url="http://blog.cnjie.net/categories/Linux/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.cnjie.net/2018/02/04/Ubuntu-16-04%E5%BC%80%E5%90%AFSSH%E6%9C%8D%E5%8A%A1/</loc>
-    <lastmod>2018-09-12T06:35:52.315Z</lastmod>
-    <data>
-        <display>
-        <title>Ubuntu 16.04开启SSH服务</title>
-        <pubTime>2018-02-04T07:57:50.000Z</pubTime>
-        
-        <tag>Ubuntu</tag>
-         
-         
-           
-             
-              <breadCrumb title="Linux" url="http://blog.cnjie.net/categories/Linux/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.cnjie.net/2017/06/25/%E6%9F%90%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2/</loc>
-    <lastmod>2018-09-12T06:35:52.314Z</lastmod>
-    <data>
-        <display>
-        <title>某项目部署</title>
-        <pubTime>2017-06-25T08:54:25.000Z</pubTime>
-        
-        <tag>项目实施</tag>
-         
-         
-           
-             
-              <breadCrumb title="Linux" url="http://blog.cnjie.net/categories/Linux/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://blog.cnjie.net/2017/08/05/%E8%A7%A3%E5%86%B3VMWARE%E5%85%8B%E9%9A%86%E5%90%8E%E7%BD%91%E5%8D%A1%E4%B8%8D%E4%B8%BAeth0%E7%9A%84%E9%97%AE%E9%A2%98/</loc>
-    <lastmod>2018-09-12T06:35:52.314Z</lastmod>
-    <data>
-        <display>
-        <title>解决VMWARE克隆后网卡不为eth0的问题</title>
-        <pubTime>2017-08-05T09:44:25.000Z</pubTime>
-        
-        <tag>shell</tag>
-         
-        <tag>脚本</tag>
-         
-         
-           
-             
-              <breadCrumb title="Linux" url="http://blog.cnjie.net/categories/Linux/"/>
+              <breadCrumb title="技术" url="http://blog.cnjie.net/categories/%E6%8A%80%E6%9C%AF/"/>
           
         </display>
     </data>
@@ -317,7 +93,7 @@
     
   <url>
     <loc>http://blog.cnjie.net/2018/02/04/python-%E4%BB%8B%E7%BB%8D/</loc>
-    <lastmod>2018-09-12T06:35:52.313Z</lastmod>
+    <lastmod>2020-07-19T08:35:08.416Z</lastmod>
     <data>
         <display>
         <title>python--[介绍]</title>
@@ -328,7 +104,7 @@
          
            
              
-              <breadCrumb title="python开发" url="http://blog.cnjie.net/categories/python%E5%BC%80%E5%8F%91/"/>
+              <breadCrumb title="技术" url="http://blog.cnjie.net/categories/%E6%8A%80%E6%9C%AF/"/>
           
         </display>
     </data>
@@ -336,19 +112,23 @@
 
     
   <url>
-    <loc>http://blog.cnjie.net/2018/04/24/Windows%E9%98%B2%E7%81%AB%E5%A2%99/</loc>
-    <lastmod>2018-09-12T06:35:52.310Z</lastmod>
+    <loc>http://blog.cnjie.net/2017/08/05/%E8%A7%A3%E5%86%B3VMWARE%E5%85%8B%E9%9A%86%E5%90%8E%E7%BD%91%E5%8D%A1%E4%B8%8D%E4%B8%BAeth0%E7%9A%84%E9%97%AE%E9%A2%98/</loc>
+    <lastmod>2020-07-19T08:34:57.206Z</lastmod>
     <data>
         <display>
-        <title>Windows防火墙</title>
-        <pubTime>2018-04-24T06:35:40.000Z</pubTime>
+        <title>解决VMWARE克隆后网卡不为eth0的问题</title>
+        <pubTime>2017-08-05T09:44:25.000Z</pubTime>
         
-        <tag>防火墙</tag>
+        <tag>shell</tag>
+         
+        <tag>脚本</tag>
+         
+        <tag>linux</tag>
          
          
            
              
-              <breadCrumb title="Windows" url="http://blog.cnjie.net/categories/Windows/"/>
+              <breadCrumb title="工作" url="http://blog.cnjie.net/categories/%E5%B7%A5%E4%BD%9C/"/>
           
         </display>
     </data>
@@ -356,19 +136,219 @@
 
     
   <url>
-    <loc>http://blog.cnjie.net/2017/06/11/%E5%86%8D%E8%A7%81%E5%AE%89%E5%8D%93/</loc>
-    <lastmod>2018-09-12T06:35:52.309Z</lastmod>
+    <loc>http://blog.cnjie.net/2017/08/05/Red_Hat%E9%85%8D%E7%BD%AE%E6%B8%85%E5%8D%8E%E6%BA%90/</loc>
+    <lastmod>2020-07-19T08:34:48.189Z</lastmod>
     <data>
         <display>
-        <title>再见，安卓</title>
-        <pubTime>2017-06-11T04:14:00.000Z</pubTime>
+        <title>Red_Hat配置清华源</title>
+        <pubTime>2017-08-05T08:54:25.000Z</pubTime>
         
-        <tag>情怀</tag>
+        <tag>shell</tag>
+         
+        <tag>脚本</tag>
+         
+        <tag>linux</tag>
          
          
            
              
-              <breadCrumb title="情感" url="http://blog.cnjie.net/categories/%E6%83%85%E6%84%9F/"/>
+              <breadCrumb title="技术" url="http://blog.cnjie.net/categories/%E6%8A%80%E6%9C%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.cnjie.net/2017/06/25/%E6%9F%90%E9%A1%B9%E7%9B%AE%E9%83%A8%E7%BD%B2/</loc>
+    <lastmod>2020-07-19T08:34:32.824Z</lastmod>
+    <data>
+        <display>
+        <title>某项目部署</title>
+        <pubTime>2017-06-25T08:54:25.000Z</pubTime>
+        
+        <tag>项目实施</tag>
+         
+         
+           
+             
+              <breadCrumb title="工作" url="http://blog.cnjie.net/categories/%E5%B7%A5%E4%BD%9C/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.cnjie.net/2017/06/18/openldap%E6%BA%90%E7%A0%81%E5%AE%89%E8%A3%85/</loc>
+    <lastmod>2020-07-19T08:34:20.410Z</lastmod>
+    <data>
+        <display>
+        <title>openldap源码安装</title>
+        <pubTime>2017-06-18T09:10:33.000Z</pubTime>
+        
+        <tag>linux</tag>
+         
+        <tag>openldap</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://blog.cnjie.net/categories/%E6%8A%80%E6%9C%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.cnjie.net/2017/06/18/yum%E6%96%B9%E5%BC%8F%E5%AE%89%E8%A3%85openldap-phppldapadmin-lam/</loc>
+    <lastmod>2020-07-19T08:34:10.415Z</lastmod>
+    <data>
+        <display>
+        <title>yum方式安装openldap,phppldapadmin</title>
+        <pubTime>2017-06-18T09:11:10.000Z</pubTime>
+        
+        <tag>linux</tag>
+         
+        <tag>openldap</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://blog.cnjie.net/categories/%E6%8A%80%E6%9C%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.cnjie.net/2017/06/18/Linux%E6%89%B9%E9%87%8F%E6%9B%BF%E6%8D%A2%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B93%E7%A7%8D%E6%96%B9%E6%B3%95/</loc>
+    <lastmod>2020-07-19T08:33:45.563Z</lastmod>
+    <data>
+        <display>
+        <title>Linux批量替换文件内容3种方法</title>
+        <pubTime>2017-06-18T08:54:25.000Z</pubTime>
+        
+        <tag>shell</tag>
+         
+        <tag>脚本</tag>
+         
+        <tag>linux</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://blog.cnjie.net/categories/%E6%8A%80%E6%9C%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.cnjie.net/2016/03/09/Mac-OS%E4%B8%8B%E4%BF%AE%E5%A4%8DApp-Store%E6%97%A0%E6%B3%95%E7%99%BB%E9%99%86%E7%9A%84%E9%97%AE%E9%A2%98/</loc>
+    <lastmod>2020-07-19T08:33:22.311Z</lastmod>
+    <data>
+        <display>
+        <title>Mac OS下修复App Store无法登陆的问题</title>
+        <pubTime>2016-03-09T13:03:26.000Z</pubTime>
+        
+        <tag>MacOS</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://blog.cnjie.net/categories/%E6%8A%80%E6%9C%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.cnjie.net/2015/07/30/Oracle%E5%91%BD%E4%BB%A4%E8%A1%8C%E9%97%AE%E9%A2%98/</loc>
+    <lastmod>2020-07-19T08:31:07.675Z</lastmod>
+    <data>
+        <display>
+        <title>解决ORACLE 11g命令行中上下左右无法使用的问题</title>
+        <pubTime>2015-07-30T02:57:43.000Z</pubTime>
+        
+        <tag>数据库</tag>
+         
+        <tag>Oracle</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://blog.cnjie.net/categories/%E6%8A%80%E6%9C%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.cnjie.net/2016/01/15/Oracle%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AF%BC%E5%87%BA/</loc>
+    <lastmod>2020-07-19T08:30:51.991Z</lastmod>
+    <data>
+        <display>
+        <title>Oracle数据库导出</title>
+        <pubTime>2016-01-15T08:14:13.000Z</pubTime>
+        
+        <tag>数据库</tag>
+         
+        <tag>Oracle</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://blog.cnjie.net/categories/%E6%8A%80%E6%9C%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.cnjie.net/2016/03/07/Tomcat-apr%E9%94%99%E8%AF%AF/</loc>
+    <lastmod>2020-07-19T08:30:35.737Z</lastmod>
+    <data>
+        <display>
+        <title>Tomcat apr错误</title>
+        <pubTime>2016-03-07T14:55:14.000Z</pubTime>
+        
+        <tag>web</tag>
+         
+        <tag>Tomcat</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://blog.cnjie.net/categories/%E6%8A%80%E6%9C%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.cnjie.net/2016/03/12/Oracle11g-%E5%AE%A1%E8%AE%A1%E6%93%8D%E4%BD%9C/</loc>
+    <lastmod>2020-07-19T08:30:08.573Z</lastmod>
+    <data>
+        <display>
+        <title>Oracle11g 审计操作</title>
+        <pubTime>2016-03-12T14:21:28.000Z</pubTime>
+        
+        <tag>数据库</tag>
+         
+        <tag>Oracle</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://blog.cnjie.net/categories/%E6%8A%80%E6%9C%AF/"/>
           
         </display>
     </data>
@@ -377,7 +357,7 @@
     
   <url>
     <loc>http://blog.cnjie.net/2017/06/14/%E9%82%A3%E4%BA%9B%E5%B9%B4%EF%BC%8C%E6%88%91%E4%BB%AC%E4%B8%80%E8%B5%B7%E8%BF%BD%E8%BF%87%E7%9A%84%E5%A5%B3%E5%AD%A9/</loc>
-    <lastmod>2018-09-12T06:35:52.308Z</lastmod>
+    <lastmod>2020-07-19T08:29:50.145Z</lastmod>
     <data>
         <display>
         <title>《那些年，我们一起追过的女孩》--经典语录</title>
@@ -388,7 +368,27 @@
          
            
              
-              <breadCrumb title="情感" url="http://blog.cnjie.net/categories/%E6%83%85%E6%84%9F/"/>
+              <breadCrumb title="想法" url="http://blog.cnjie.net/categories/%E6%83%B3%E6%B3%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.cnjie.net/2018/02/04/%E9%85%8D%E7%BD%AE%E5%BD%93%E5%89%8D%E7%94%A8%E6%88%B7%E4%BD%BF%E7%94%A8%E5%9B%BD%E5%86%85pip%E6%BA%90/</loc>
+    <lastmod>2020-07-19T08:29:13.588Z</lastmod>
+    <data>
+        <display>
+        <title>配置当前用户使用国内pip源</title>
+        <pubTime>2018-02-04T08:12:03.000Z</pubTime>
+        
+        <tag>python</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://blog.cnjie.net/categories/%E6%8A%80%E6%9C%AF/"/>
           
         </display>
     </data>
@@ -397,7 +397,7 @@
     
   <url>
     <loc>http://blog.cnjie.net/2018/02/04/python-%E5%9F%BA%E7%A1%80/</loc>
-    <lastmod>2018-09-12T06:35:52.307Z</lastmod>
+    <lastmod>2020-07-19T08:29:08.504Z</lastmod>
     <data>
         <display>
         <title>python--[基础]</title>
@@ -408,7 +408,27 @@
          
            
              
-              <breadCrumb title="python开发" url="http://blog.cnjie.net/categories/python%E5%BC%80%E5%8F%91/"/>
+              <breadCrumb title="技术" url="http://blog.cnjie.net/categories/%E6%8A%80%E6%9C%AF/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://blog.cnjie.net/2018/02/04/Ubuntu-16-04%E5%BC%80%E5%90%AFSSH%E6%9C%8D%E5%8A%A1/</loc>
+    <lastmod>2020-07-19T08:28:57.189Z</lastmod>
+    <data>
+        <display>
+        <title>Ubuntu 16.04开启SSH服务</title>
+        <pubTime>2018-02-04T07:57:50.000Z</pubTime>
+        
+        <tag>Ubuntu</tag>
+         
+         
+           
+             
+              <breadCrumb title="技术" url="http://blog.cnjie.net/categories/%E6%8A%80%E6%9C%AF/"/>
           
         </display>
     </data>
@@ -417,7 +437,7 @@
     
   <url>
     <loc>http://blog.cnjie.net/2018/02/04/Ubuntu16-04%E9%85%8D%E7%BD%AE%E9%9D%99%E6%80%81IP/</loc>
-    <lastmod>2018-09-12T06:35:52.306Z</lastmod>
+    <lastmod>2020-07-19T08:28:53.662Z</lastmod>
     <data>
         <display>
         <title>Ubuntu16.04配置静态IP</title>
@@ -428,10 +448,16 @@
          
            
              
-              <breadCrumb title="Linux" url="http://blog.cnjie.net/categories/Linux/"/>
+              <breadCrumb title="技术" url="http://blog.cnjie.net/categories/%E6%8A%80%E6%9C%AF/"/>
           
         </display>
     </data>
     </url>
 
+    
+    
+    
+    
+    
+    
 </urlset>
