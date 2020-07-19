@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    
+
+    
+    <title>KVM之本地安装虚拟机--03 | Zhu&#39;s Blog</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="linux,kvm" />
+    
+    <meta name="description" content="在kvm宿主机上格式化新添加的硬盘1234567891011121314151617181920212223242526[root@kvm ~]# fdisk /dev/sdaWelcome to fdisk (util-linux 2.23.2).Changes will remain in memory only, until you decide to write them.Be caref">
+<meta name="keywords" content="linux,kvm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="KVM之本地安装虚拟机--03">
+<meta property="og:url" content="http://blog.cnjie.net/2020/07/19/KVM之本地安装虚拟机-03/index.html">
+<meta property="og:site_name" content="Zhu&#39;s Blog">
+<meta property="og:description" content="在kvm宿主机上格式化新添加的硬盘1234567891011121314151617181920212223242526[root@kvm ~]# fdisk /dev/sdaWelcome to fdisk (util-linux 2.23.2).Changes will remain in memory only, until you decide to write them.Be caref">
+<meta property="og:image" content="http://blog.cnjie.net/uploads/kvm_03_1.png">
+<meta property="og:updated_time" content="2020-07-19T13:13:31.052Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="KVM之本地安装虚拟机--03">
+<meta name="twitter:description" content="在kvm宿主机上格式化新添加的硬盘1234567891011121314151617181920212223242526[root@kvm ~]# fdisk /dev/sdaWelcome to fdisk (util-linux 2.23.2).Changes will remain in memory only, until you decide to write them.Be caref">
+<meta name="twitter:image" content="http://blog.cnjie.net/uploads/kvm_03_1.png">
+    
+
+    
+
+    
+        <link rel="icon" href="/uploads/favicon.png" />
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.5.0/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">唯有尽力自持，方不至癫狂</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/工作/">工作</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/想法/">想法</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/技术/">技术</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/技术/Linux/">Linux</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/技术/MacOS/">MacOS</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/技术/Python编程/">Python编程</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/技术/Windows/">Windows</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/技术/中间件应用/">中间件应用</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/技术/数据库/">数据库</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/技术/虚拟化/">虚拟化</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/生活/">生活</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/生活/心情/">心情</a></li></ul></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/技术/">技术</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/技术/虚拟化/">虚拟化</a>
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-KVM之本地安装虚拟机-03" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        KVM之本地安装虚拟机--03
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+  <div class="article-date">
+    <i class="fa fa-calendar"></i>
+    <a href="/2020/07/19/KVM之本地安装虚拟机-03/" class="article-date">
+       <time datetime="2020-07-19T13:01:31.000Z" itemprop="datePublished">2020-07-19</time>
+    </a>
+  </div>
+
+
+<div class="article-date">
+  <i class="fa fa-calendar-plus-o"></i>
+  <a href="/2020/07/19/KVM之本地安装虚拟机-03/" class="article-date">
+     <time datetime="2020-07-19T13:13:31.052Z" itemprop="dateModified">2020-07-19</time>
+  </a>
+</div>
+
+
+                
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/kvm/">kvm</a>, <a class="tag-link" href="/tags/linux/">linux</a>
+    </div>
+
+                
+
+                
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            
+
+            
+
+            
+
+            <h1 id="在kvm宿主机上格式化新添加的硬盘"><a href="#在kvm宿主机上格式化新添加的硬盘" class="headerlink" title="在kvm宿主机上格式化新添加的硬盘"></a>在kvm宿主机上格式化新添加的硬盘</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">[root@kvm ~]<span class="comment"># fdisk /dev/sda</span></div><div class="line">Welcome to fdisk (util-linux 2.23.2).</div><div class="line"></div><div class="line">Changes will remain <span class="keyword">in</span> memory only, until you decide to write them.</div><div class="line">Be careful before using the write <span class="built_in">command</span>.</div><div class="line"></div><div class="line">Device does not contain a recognized partition table</div><div class="line">Building a new DOS disklabel with disk identifier 0x0c2c0d45.</div><div class="line"></div><div class="line">Command (m <span class="keyword">for</span> <span class="built_in">help</span>): n   <span class="comment"># 新建分区</span></div><div class="line">Partition <span class="built_in">type</span>:</div><div class="line">   p   primary (0 primary, 0 extended, 4 free) <span class="comment"># 主分区</span></div><div class="line">   e   extended</div><div class="line">Select (default p): p</div><div class="line">Partition number (1-4, default 1): 1  <span class="comment">#  分区1</span></div><div class="line">First sector (2048-419430399, default 2048):  </div><div class="line">Using default value 2048 <span class="comment"># 分配所有空间</span></div><div class="line">Last sector, +sectors or +size&#123;K,M,G&#125; (2048-419430399, default 419430399): </div><div class="line">Using default value 419430399</div><div class="line">Partition 1 of <span class="built_in">type</span> Linux and of size 200 GiB is <span class="built_in">set</span></div><div class="line"></div><div class="line">Command (m <span class="keyword">for</span> <span class="built_in">help</span>): w  <span class="comment"># 保存配置</span></div><div class="line">The partition table has been altered!</div><div class="line"></div><div class="line">Calling ioctl() to re-read partition table.</div><div class="line">Syncing disks.</div></pre></td></tr></table></figure>
+<blockquote>
+<p>格式化分区</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">[root@kvm ~]<span class="comment"># mkfs -t ext4 /dev/sda1  # 格式化分区</span></div><div class="line">mke2fs 1.42.9 (28-Dec-2013)</div><div class="line">Filesystem label=</div><div class="line">OS <span class="built_in">type</span>: Linux</div><div class="line">Block size=4096 (<span class="built_in">log</span>=2)</div><div class="line">Fragment size=4096 (<span class="built_in">log</span>=2)</div><div class="line">Stride=0 blocks, Stripe width=0 blocks</div><div class="line">13107200 inodes, 52428544 blocks</div><div class="line">2621427 blocks (5.00%) reserved <span class="keyword">for</span> the super user</div><div class="line">First data block=0</div><div class="line">Maximum filesystem blocks=2199912448</div><div class="line">1600 block groups</div><div class="line">32768 blocks per group, 32768 fragments per group</div><div class="line">8192 inodes per group</div><div class="line">Superblock backups stored on blocks: </div><div class="line">        32768, 98304, 163840, 229376, 294912, 819200, 884736, 1605632, 2654208, </div><div class="line">        4096000, 7962624, 11239424, 20480000, 23887872</div><div class="line"></div><div class="line">Allocating group tables: <span class="keyword">done</span>                            </div><div class="line">Writing inode tables: <span class="keyword">done</span>                            </div><div class="line">Creating journal (32768 blocks): <span class="keyword">done</span></div><div class="line">Writing superblocks and filesystem accounting information:          </div><div class="line"><span class="keyword">done</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>挂载磁盘，并加入重启自动挂载</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root@kvm ~]<span class="comment"># mkdir /kvm;mount /dev/sda1 /kvm</span></div><div class="line">[root@kvm ~]<span class="comment"># echo "/dev/sda1 /kvm ext4 defaults 0 0" &gt;&gt; /etc/fstab</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>将ISO文件上传到/opt/iso下</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[root@kvm ~]<span class="comment"># cd /opt/iso/</span></div><div class="line">[root@kvm iso]<span class="comment"># ls</span></div><div class="line">CentOS-6.10-x86_64-bin-DVD1.iso</div></pre></td></tr></table></figure>
+<h1 id="安装虚拟机1"><a href="#安装虚拟机1" class="headerlink" title="安装虚拟机1"></a>安装虚拟机1</h1><blockquote>
+<p>创建虚拟机存放目录，该目录分区必须足够大</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[root@kvm ~]<span class="comment"># mkdir /kvm/image</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>配置安装参数，执行安装命令</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">[root@kvm ~]<span class="comment"># virt-install --name vm1 --disk path=/kvm/image/vm1.img,size=18 --ram 1024 --vcpus 1 --cdrom /opt/iso/CentOS-6.10-x86_64-bin-DVD1.iso --os-type linux --os-variant rhel6 --network bridge=br0 --vnc --vnclisten=0.0.0.0 --vncport=5901</span></div><div class="line"></div><div class="line"><span class="comment"># 【参数说明】:</span></div><div class="line">--name  指定虚拟机的名字</div><div class="line">--ram 指定内存分配多少</div><div class="line">--disk path 指定虚拟磁盘放到哪里，size=18 指定磁盘大小为18G,这样磁盘文件格式为raw，raw格式不能做快照，后面有说明，需要转换为qcow2格式，如果要使用qcow2格式的虚拟磁盘，需要事先创建qcow2格式的虚拟磁盘。 参考  http://www.361way.com/kvm-qcow2-preallocation-metadata/3354.html   示例:qemu-img create -f qcow2 -o preallocation=metadata  /data/test02.img 7G;  --disk path=/data/test02.img,format=qcow2,size=7,bus=virtio</div><div class="line">--ram  指定内存大小 单位M</div><div class="line">--vcpus 指定分配cpu几个</div><div class="line">--cdrom 指定本地iso文件路径</div><div class="line">--os-type 指定系统类型为linux</div><div class="line">--os-variant 指定系统版本</div><div class="line">--network  指定网络类型</div></pre></td></tr></table></figure>
+<blockquote>
+<p>执行完上面的操作会看到如下截图</p>
+</blockquote>
+<p><img src="/uploads/kvm_03_1.png" alt=""></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;因为我们的KVM没有安装图形化桌面，所以连接虚拟机需要用到VNC Viewer，下面假设已经安装VNC Viewer，连接方式如下所示</p>
+<p><img src="/uploads/kvm_03_2.png" alt=""></p>
+<blockquote>
+<p>新建连接</p>
+</blockquote>
+<p><img src="/uploads/kvm_03_3.png" alt=""></p>
+<blockquote>
+<p>输入KVM服务器IP和在安装的虚拟机vnc端口，完成后点击OK即可</p>
+</blockquote>
+<p><img src="/uploads/kvm_03_4.png" alt=""></p>
+<hr>
+<p><img src="/uploads/kvm_03_5.png" alt=""></p>
+<hr>
+<p><img src="/uploads/kvm_03_6.png" alt=""></p>
+<blockquote>
+<p>完成上述操作后就可以看到如下界面了</p>
+</blockquote>
+<p><img src="/uploads/kvm_03_7.png" alt=""></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;具体操作见【如何安装Linux操作系统】</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;待完全安装完毕后，我们最先执行安装的界面将会输出如下结果</p>
+<p><img src="/uploads/kvm_03_8.png" alt=""></p>
+<h1 id="安装虚拟机2"><a href="#安装虚拟机2" class="headerlink" title="安装虚拟机2"></a>安装虚拟机2</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上面的方式使用默认创建的虚拟机是raw格式的，通过下面的创建方式指定虚拟机格式，同安装虚拟机1一样，我们也将qcow2格式的虚拟机放于/kvm/image下</p>
+<blockquote>
+<p>创建虚拟机</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root@kvm ~]<span class="comment"># qemu-img create -f qcow2 /kvm/image/CentOS-6.10.qcow2 18G   </span></div><div class="line">Formatting <span class="string">'/kvm/image/CentOS-6.10.qcow2'</span>, fmt=qcow2 size=19327352832 encryption=off cluster_size=65536 lazy_refcounts=off</div></pre></td></tr></table></figure>
+<blockquote>
+<p>确认虚拟机格式</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">[root@kvm ~]<span class="comment"># file /kvm/image/CentOS-6.10.qcow2 </span></div><div class="line">/kvm/image/CentOS-6.10.qcow2: QEMU QCOW Image (v3), 19327352832 bytes</div><div class="line">[root@kvm ~]<span class="comment"># qemu-img info /kvm/image/CentOS-6.10.qcow2 </span></div><div class="line">image: /kvm/image/CentOS-6.10.qcow2</div><div class="line">file format: qcow2</div><div class="line">virtual size: 18G (19327352832 bytes)</div><div class="line">disk size: 196K</div><div class="line">cluster_size: 65536</div><div class="line">Format specific information:</div><div class="line">    compat: 1.1</div><div class="line">    lazy refcounts: <span class="literal">false</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>安装虚拟机</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[root@kvm image]<span class="comment"># virt-install --name vm2_qcow2 --ram 1024 --cdrom /opt/iso/CentOS-6.10-x86_64-bin-DVD1.iso --disk path=/kvm/image/CentOS-6.10.qcow2 --network network=default --vnc --vnclisten=0.0.0.0 --vncport=5902 --os-type=linux --os-variant=rhel6</span></div></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;执行指令后将会看到如下界面</p>
+<p><img src="/uploads/kvm_03_9.png" alt=""></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;剩下的操作同安装虚拟机1</p>
+<h1 id="常见KVM管理命令"><a href="#常见KVM管理命令" class="headerlink" title="常见KVM管理命令"></a>常见KVM管理命令</h1><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>virsh list –all</td>
+<td>查看所有虚拟机状态</td>
+</tr>
+<tr>
+<td>virsh start vm1</td>
+<td>VM1 开机</td>
+</tr>
+<tr>
+<td>virsh start vm1</td>
+<td>VM1开机</td>
+</tr>
+<tr>
+<td>virsh shutdown vm1</td>
+<td>VM1关机</td>
+</tr>
+<tr>
+<td>virsh destroy  vm1</td>
+<td>强制关闭电源</td>
+</tr>
+<tr>
+<td>virsh undefine test1</td>
+<td>移除虚拟机</td>
+</tr>
+<tr>
+<td>virsh suspend vm_name</td>
+<td>暂停虚拟机</td>
+</tr>
+<tr>
+<td>virsh resume vm_name</td>
+<td>恢复虚拟机</td>
+</tr>
+<tr>
+<td>ls /etc/libvirt/qemu/</td>
+<td>主机的配置文件所在位置</td>
+</tr>
+</tbody>
+</table>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://blog.cnjie.net/2020/07/19/KVM之本地安装虚拟机-03/" data-id="ckct48a3o001vz92qly9tvihy" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": {
+            "@type": "Person",
+            "name": "Zhu Jie"
+        },
+        "headline": "KVM之本地安装虚拟机--03",
+        "image": "http://blog.cnjie.net/uploads/kvm_03_1.png",
+        "keywords": "linux kvm",
+        "genre": "技术 虚拟化",
+        "datePublished": "2020-07-19",
+        "dateCreated": "2020-07-19",
+        "dateModified": "2020-07-19",
+        "url": "http://blog.cnjie.net/2020/07/19/KVM之本地安装虚拟机-03/",
+        "description": "在kvm宿主机上格式化新添加的硬盘1234567891011121314151617181920212223242526[root@kvm ~]# fdisk /dev/sdaWelcome to fdisk (util-linux 2.23.2).Changes will remain in memory only, until you decide to write them.Be caref",
+        "wordCount": 732
+    }
+</script>
+
+</article>
+
+    <section id="comments">
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/zhu-jie" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weixin" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-weixin"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2020/07/19/kvm之从网上镜像安装虚拟机Centos6-10-04/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            KVM之从网上镜像安装虚拟机Centos6.10--04
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2020/07/19/KVM之网络配置-02/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">KVM之网络配置--02</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/07/19/kvm之从网上镜像安装虚拟机Centos6-10-04/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/uploads/kvm_04_1.png)" alt="KVM之从网上镜像安装虚拟机Centos6.10--04" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/技术/">技术</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/技术/虚拟化/">虚拟化</a></p>
+                            <p class="item-title"><a href="/2020/07/19/kvm之从网上镜像安装虚拟机Centos6-10-04/" class="title">KVM之从网上镜像安装虚拟机Centos6.10--04</a></p>
+                            <p class="item-date"><time datetime="2020-07-19T13:14:09.000Z" itemprop="datePublished">2020-07-19</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/07/19/KVM之本地安装虚拟机-03/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/uploads/kvm_03_1.png)" alt="KVM之本地安装虚拟机--03" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/技术/">技术</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/技术/虚拟化/">虚拟化</a></p>
+                            <p class="item-title"><a href="/2020/07/19/KVM之本地安装虚拟机-03/" class="title">KVM之本地安装虚拟机--03</a></p>
+                            <p class="item-date"><time datetime="2020-07-19T13:01:31.000Z" itemprop="datePublished">2020-07-19</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/07/19/KVM之网络配置-02/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/技术/">技术</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/技术/虚拟化/">虚拟化</a></p>
+                            <p class="item-title"><a href="/2020/07/19/KVM之网络配置-02/" class="title">KVM之网络配置--02</a></p>
+                            <p class="item-date"><time datetime="2020-07-19T12:57:22.000Z" itemprop="datePublished">2020-07-19</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/07/19/KVM之入门介绍与基于CentOS7的安装部署-01/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/uploads/kvm_01_1.png)" alt="KVM之入门介绍与基于CentOS7的安装部署--01" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/技术/">技术</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/技术/虚拟化/">虚拟化</a></p>
+                            <p class="item-title"><a href="/2020/07/19/KVM之入门介绍与基于CentOS7的安装部署-01/" class="title">KVM之入门介绍与基于CentOS7的安装部署--01</a></p>
+                            <p class="item-date"><time datetime="2020-07-19T12:32:40.000Z" itemprop="datePublished">2020-07-19</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/04/24/Windows防火墙/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/uploads/w1.png)" alt="Windows防火墙" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/技术/">技术</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/技术/Windows/">Windows</a></p>
+                            <p class="item-title"><a href="/2018/04/24/Windows防火墙/" class="title">Windows防火墙</a></p>
+                            <p class="item-date"><time datetime="2018-04-24T06:35:40.000Z" itemprop="datePublished">2018-04-24</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/工作/">工作</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/想法/">想法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">21</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Linux/">Linux</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/MacOS/">MacOS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Python编程/">Python编程</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Windows/">Windows</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/中间件应用/">中间件应用</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/">数据库</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/虚拟化/">虚拟化</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/生活/心情/">心情</a><span class="category-list-count">1</span></li></ul></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/MacOS/" style="font-size: 10px;">MacOS</a> <a href="/tags/Oracle/" style="font-size: 15px;">Oracle</a> <a href="/tags/Tomcat/" style="font-size: 10px;">Tomcat</a> <a href="/tags/Ubuntu/" style="font-size: 12.5px;">Ubuntu</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/kvm/" style="font-size: 17.5px;">kvm</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/openldap/" style="font-size: 12.5px;">openldap</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/shell/" style="font-size: 15px;">shell</a> <a href="/tags/web/" style="font-size: 10px;">web</a> <a href="/tags/命令/" style="font-size: 12.5px;">命令</a> <a href="/tags/心情/" style="font-size: 10px;">心情</a> <a href="/tags/情怀/" style="font-size: 12.5px;">情怀</a> <a href="/tags/数据库/" style="font-size: 15px;">数据库</a> <a href="/tags/脚本/" style="font-size: 15px;">脚本</a> <a href="/tags/防火墙/" style="font-size: 10px;">防火墙</a> <a href="/tags/项目实施/" style="font-size: 10px;">项目实施</a>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2020 Zhu Jie</p>
+                
+                <p>Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="https://github.com/ppoffice" target="_blank">PPOffice</a></p>
+                
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+    </div>
+    
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+    
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+</body>
+</html>

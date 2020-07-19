@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    
+
+    
+    <title>KVM之入门介绍与基于CentOS7的安装部署--01 | Zhu&#39;s Blog</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="linux,kvm" />
+    
+    <meta name="description" content="什么是KVMKVM: Kernel-based Virtual Machine 结构简单，包含两个部分：  设备驱动/dev/kvm 针对模拟PC硬件的用户空间组件 KVM需要CPU中虚拟化功能的支持，只可在具有虚拟化支持的CPU上运行，即具有VT功能的Intel CPU和具有AMD-V功能的AMD CPU。 架构图 KVM特性 嵌入到Linux正式Kernel（提高兼容性）  代码级资源调用（提">
+<meta name="keywords" content="linux,kvm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="KVM之入门介绍与基于CentOS7的安装部署--01">
+<meta property="og:url" content="http://blog.cnjie.net/2020/07/19/KVM之入门介绍与基于CentOS7的安装部署-01/index.html">
+<meta property="og:site_name" content="Zhu&#39;s Blog">
+<meta property="og:description" content="什么是KVMKVM: Kernel-based Virtual Machine 结构简单，包含两个部分：  设备驱动/dev/kvm 针对模拟PC硬件的用户空间组件 KVM需要CPU中虚拟化功能的支持，只可在具有虚拟化支持的CPU上运行，即具有VT功能的Intel CPU和具有AMD-V功能的AMD CPU。 架构图 KVM特性 嵌入到Linux正式Kernel（提高兼容性）  代码级资源调用（提">
+<meta property="og:image" content="http://blog.cnjie.net/uploads/kvm_01_1.png">
+<meta property="og:updated_time" content="2020-07-19T12:56:33.707Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="KVM之入门介绍与基于CentOS7的安装部署--01">
+<meta name="twitter:description" content="什么是KVMKVM: Kernel-based Virtual Machine 结构简单，包含两个部分：  设备驱动/dev/kvm 针对模拟PC硬件的用户空间组件 KVM需要CPU中虚拟化功能的支持，只可在具有虚拟化支持的CPU上运行，即具有VT功能的Intel CPU和具有AMD-V功能的AMD CPU。 架构图 KVM特性 嵌入到Linux正式Kernel（提高兼容性）  代码级资源调用（提">
+<meta name="twitter:image" content="http://blog.cnjie.net/uploads/kvm_01_1.png">
+    
+
+    
+
+    
+        <link rel="icon" href="/uploads/favicon.png" />
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.5.0/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">唯有尽力自持，方不至癫狂</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/工作/">工作</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/想法/">想法</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/技术/">技术</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/技术/Linux/">Linux</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/技术/MacOS/">MacOS</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/技术/Python编程/">Python编程</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/技术/Windows/">Windows</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/技术/中间件应用/">中间件应用</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/技术/数据库/">数据库</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/技术/虚拟化/">虚拟化</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/生活/">生活</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/生活/心情/">心情</a></li></ul></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/技术/">技术</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/技术/虚拟化/">虚拟化</a>
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-KVM之入门介绍与基于CentOS7的安装部署-01" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        KVM之入门介绍与基于CentOS7的安装部署--01
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+  <div class="article-date">
+    <i class="fa fa-calendar"></i>
+    <a href="/2020/07/19/KVM之入门介绍与基于CentOS7的安装部署-01/" class="article-date">
+       <time datetime="2020-07-19T12:32:40.000Z" itemprop="datePublished">2020-07-19</time>
+    </a>
+  </div>
+
+
+<div class="article-date">
+  <i class="fa fa-calendar-plus-o"></i>
+  <a href="/2020/07/19/KVM之入门介绍与基于CentOS7的安装部署-01/" class="article-date">
+     <time datetime="2020-07-19T12:56:33.707Z" itemprop="dateModified">2020-07-19</time>
+  </a>
+</div>
+
+
+                
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/kvm/">kvm</a>, <a class="tag-link" href="/tags/linux/">linux</a>
+    </div>
+
+                
+
+                
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            
+
+            
+
+            
+
+            <h1 id="什么是KVM"><a href="#什么是KVM" class="headerlink" title="什么是KVM"></a>什么是KVM</h1><p>KVM: Kernel-based Virtual Machine</p>
+<p>结构简单，包含两个部分：</p>
+<ul>
+<li>设备驱动/dev/kvm</li>
+<li>针对模拟PC硬件的用户空间组件</li>
+<li>KVM需要CPU中虚拟化功能的支持，只可在具有虚拟化支持的CPU上运行，即具有VT功能的Intel CPU和具有AMD-V功能的AMD CPU。</li>
+<li><p>架构图<br><img src="/uploads/kvm_01_1.png" alt="架构图"></p>
+<h1 id="KVM特性"><a href="#KVM特性" class="headerlink" title="KVM特性"></a>KVM特性</h1></li>
+<li><p>嵌入到Linux正式Kernel（提高兼容性）</p>
+</li>
+<li>代码级资源调用（提高性能）</li>
+<li>虚拟机就是一个进程（内存易于管理）</li>
+<li>直接支持NUMA技术（提高扩展性）</li>
+<li>———RedHat 收购KVM——-</li>
+<li>保持开源发展模式</li>
+<li>更好的商业支持和服务保障</li>
+</ul>
+<h1 id="KVM与QEMU"><a href="#KVM与QEMU" class="headerlink" title="KVM与QEMU"></a>KVM与QEMU</h1><p>KVM介绍：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对于KVM来说，其是一款支持虚拟机技术，而且是Linux内核中的一个功能模块。它在Linux2.6.20之后的任何Linux分支中都被支持。它还有一个条件，对硬件要求的条件，必须达到一定标准的硬件架构。对于Intel-VT与AMD-V都是支持的。对于是否支持也可以通过命令行查看：egrep ‘(vmx|svm)’ –color=always /proc/cpuinfo。如果有任何内容则说明当期硬件架构是支持KVM的，否则就不支持。另外，就算支持，但是在bios中是默认设置不打开该功能的，所以你还要去bios设置其为enable。当设置成功之后，还需要关机一次，注意是关机而不是重启。否则该设置的更改就不起效。</p>
+<p>QEMU:<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;QEMU是什么。其实它也是一款虚拟化技术，就算不使用KVM，单传的QEMU也可以完全实现一个虚拟机。那为何还会有QEMU-KVM这个名词那。是因为虽然KVM的技术已经相当成熟而且可以对很多东西进行隔离，但是在某些方面还是无法虚拟出真实的机器。比如对网卡的虚拟，那这个时候就需要另外的技术来做补充，而QEMU-KVM则是这样一种技术。它补充了KVM技术的不足，而且在性能上对KVM进行了优化。<br><img src="/uploads/kvm_01_2.png" alt="QEMU"></p>
+<h1 id="Red-Hat企业级虚拟化解决方案"><a href="#Red-Hat企业级虚拟化解决方案" class="headerlink" title="Red-Hat企业级虚拟化解决方案"></a>Red-Hat企业级虚拟化解决方案</h1><p><img src="/uploads/kvm_01_3.png" alt="企业级虚拟化"></p>
+<h1 id="Red-Hat桌面虚拟化"><a href="#Red-Hat桌面虚拟化" class="headerlink" title="Red-Hat桌面虚拟化"></a>Red-Hat桌面虚拟化</h1><p><img src="/uploads/kvm_01_4.png" alt="桌面虚拟化"></p>
+<h1 id="基于CentOS7的安装部署"><a href="#基于CentOS7的安装部署" class="headerlink" title="基于CentOS7的安装部署"></a>基于CentOS7的安装部署</h1><h2 id="安装前准备"><a href="#安装前准备" class="headerlink" title="安装前准备"></a>安装前准备</h2><blockquote>
+<p><strong>确保服务器开启虚拟化支持</strong></p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[root@localhost ~]<span class="comment"># grep -E '(vmx|svm)' /proc/cpuinfo</span></div><div class="line">flags           : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb lm constant_tsc nopl nonstop_tsc eagerfpu pni pclmulqdq vmx ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch tpr_shadow vnmi flexpriority ept vpid fsgsbase bmi1 hle avx2 smep bmi2 invpcid rtm rdseed adx xsaveopt</div><div class="line">flags           : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss syscall nx pdpe1gb lm constant_tsc nopl nonstop_tsc eagerfpu pni pclmulqdq vmx ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch tpr_shadow vnmi flexpriority ept vpid fsgsbase bmi1 hle avx2 smep bmi2 invpcid rtm rdseed adx xsaveopt</div></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>关闭selinux</strong></p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[root@localhost ~]<span class="comment"># setenforce 0 &amp;&amp; sed -i 's/SELINUX\=enforcing/SELINUX\=disabled/g'  /etc/selinux/config</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>NTP设置</strong></p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 配置文件/etc/ntp.conf</span></div><div class="line">[root@localhost ~]<span class="comment"># /usr/sbin/ntpdate cn.ntp.org.cn   </span></div><div class="line">26 Dec 15:18:44 ntpdate[13806]: step time server 120.25.108.11 offset 1.377732 sec</div><div class="line">[root@localhost ~]<span class="comment"># crontab -l</span></div><div class="line">*/5 * * * * /usr/sbin/ntpdate cn.ntp.org.cn &gt;/dev/null  2&gt;&amp;1</div></pre></td></tr></table></figure>
+<h2 id="安装KVM"><a href="#安装KVM" class="headerlink" title="安装KVM"></a>安装KVM</h2><blockquote>
+<p><strong>安装epel</strong></p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[root@localhost ~]<span class="comment"># rpm -ivh http://mirrors.ustc.edu.cn/epel/7/x86_64/Packages/e/epel-release-7-12.noarch.rpm</span></div><div class="line">Retrieving http://mirrors.ustc.edu.cn/epel/7/x86_64/Packages/e/epel-release-7-12.noarch.rpm</div><div class="line">warning: /var/tmp/rpm-tmp.qzBtSd: Header V3 RSA/SHA256 Signature, key ID 352c64e5: NOKEY</div><div class="line">Preparing...                          <span class="comment">################################# [100%]</span></div><div class="line">Updating / installing...</div><div class="line">   1:epel-release-7-12                <span class="comment">################################# [100%]</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>安装相关的工具</strong></p>
+</blockquote>
+<ul>
+<li>qemu-kvm qemu-kvm-tools <em># QEMU的一个工具用于管理KVM</em></li>
+<li>virt-manager&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em># 使用这个包里的工具创建虚拟机</em></li>
+<li>libvirt&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em># 创建的虚拟机用libvirt进行管理</em></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[root@localhost ~]<span class="comment">#  yum install qemu-kvm qemu-kvm-tools virt-manager libvirt -y</span></div><div class="line">Loaded plugins: fastestmirror</div><div class="line">Loading mirror speeds from cached hostfile</div><div class="line">epel/x86_64/metalink                                                                                                               | 9.5 kB  00:00:00     </div><div class="line"> * epel: my.mirrors.theg</div><div class="line"> ........</div></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>启动libvird</strong></p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">[root@localhost ~]<span class="comment"># systemctl start libvirtd</span></div><div class="line">[root@localhost ~]<span class="comment"># systemctl status libvirtd</span></div><div class="line">● libvirtd.service - Virtualization daemon</div><div class="line">   Loaded: loaded (/usr/lib/systemd/system/libvirtd.service; enabled; vendor preset: enabled)</div><div class="line">   Active: active (running) since Thu 2019-12-26 15:51:16 CST; 4s ago</div><div class="line">     Docs: man:libvirtd(8)</div><div class="line">           https://libvirt.org</div><div class="line"> Main PID: 14704 (libvirtd)</div><div class="line">    Tasks: 18 (<span class="built_in">limit</span>: 32768)</div><div class="line">   CGroup: /system.slice/libvirtd.service</div><div class="line">           └─14704 /usr/sbin/libvirtd</div><div class="line"></div><div class="line">Dec 26 15:51:15 localhost.localdomain systemd[1]: Starting Virtualization daemon...</div><div class="line">Dec 26 15:51:16 localhost.localdomain systemd[1]: Started Virtualization daemon.</div><div class="line"><span class="comment"># 启动后会多出virbr0网卡， 对应的iptables也会跟随着变化，这个virbr0类似一个交换机</span></div><div class="line">[root@localhost ~]<span class="comment">#  brctl show </span></div><div class="line">bridge name     bridge id               STP enabled     interfaces</div><div class="line">virbr0          8000.5254005a844f       yes             virbr0-nic</div></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>检查kvm模块是否加载</strong></p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[root@localhost ~]<span class="comment"># lsmod |grep kvm</span></div><div class="line">kvm_intel             183621  0 </div><div class="line">kvm                   586948  1 kvm_intel</div><div class="line">irqbypass              13503  1 kvm</div><div class="line"><span class="comment"># 如果没有加载则执行，还是没有就重启服务器</span></div><div class="line">[root@localhost ~]<span class="comment"># modprobe kvm-amd</span></div></pre></td></tr></table></figure>
+<p>至此kvm就安装部署完毕了</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://blog.cnjie.net/2020/07/19/KVM之入门介绍与基于CentOS7的安装部署-01/" data-id="ckct48a3f001gz92q5fl0h6p7" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": {
+            "@type": "Person",
+            "name": "Zhu Jie"
+        },
+        "headline": "KVM之入门介绍与基于CentOS7的安装部署--01",
+        "image": "http://blog.cnjie.net/uploads/kvm_01_1.png",
+        "keywords": "linux kvm",
+        "genre": "技术 虚拟化",
+        "datePublished": "2020-07-19",
+        "dateCreated": "2020-07-19",
+        "dateModified": "2020-07-19",
+        "url": "http://blog.cnjie.net/2020/07/19/KVM之入门介绍与基于CentOS7的安装部署-01/",
+        "description": "什么是KVMKVM: Kernel-based Virtual Machine
+结构简单，包含两个部分：
+
+设备驱动/dev/kvm
+针对模拟PC硬件的用户空间组件
+KVM需要CPU中虚拟化功能的支持，只可在具有虚拟化支持的CPU上运行，即具有VT功能的Intel CPU和具有AMD-V功能的AMD CPU。
+架构图
+KVM特性
+嵌入到Linux正式Kernel（提高兼容性）
+
+代码级资源调用（提",
+        "wordCount": 815
+    }
+</script>
+
+</article>
+
+    <section id="comments">
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/zhu-jie" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weixin" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-weixin"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2020/07/19/KVM之网络配置-02/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            KVM之网络配置--02
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2018/04/24/Windows防火墙/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">Windows防火墙</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/07/19/kvm之从网上镜像安装虚拟机Centos6-10-04/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/uploads/kvm_04_1.png)" alt="KVM之从网上镜像安装虚拟机Centos6.10--04" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/技术/">技术</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/技术/虚拟化/">虚拟化</a></p>
+                            <p class="item-title"><a href="/2020/07/19/kvm之从网上镜像安装虚拟机Centos6-10-04/" class="title">KVM之从网上镜像安装虚拟机Centos6.10--04</a></p>
+                            <p class="item-date"><time datetime="2020-07-19T13:14:09.000Z" itemprop="datePublished">2020-07-19</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/07/19/KVM之本地安装虚拟机-03/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/uploads/kvm_03_1.png)" alt="KVM之本地安装虚拟机--03" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/技术/">技术</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/技术/虚拟化/">虚拟化</a></p>
+                            <p class="item-title"><a href="/2020/07/19/KVM之本地安装虚拟机-03/" class="title">KVM之本地安装虚拟机--03</a></p>
+                            <p class="item-date"><time datetime="2020-07-19T13:01:31.000Z" itemprop="datePublished">2020-07-19</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/07/19/KVM之网络配置-02/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/技术/">技术</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/技术/虚拟化/">虚拟化</a></p>
+                            <p class="item-title"><a href="/2020/07/19/KVM之网络配置-02/" class="title">KVM之网络配置--02</a></p>
+                            <p class="item-date"><time datetime="2020-07-19T12:57:22.000Z" itemprop="datePublished">2020-07-19</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/07/19/KVM之入门介绍与基于CentOS7的安装部署-01/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/uploads/kvm_01_1.png)" alt="KVM之入门介绍与基于CentOS7的安装部署--01" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/技术/">技术</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/技术/虚拟化/">虚拟化</a></p>
+                            <p class="item-title"><a href="/2020/07/19/KVM之入门介绍与基于CentOS7的安装部署-01/" class="title">KVM之入门介绍与基于CentOS7的安装部署--01</a></p>
+                            <p class="item-date"><time datetime="2020-07-19T12:32:40.000Z" itemprop="datePublished">2020-07-19</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/04/24/Windows防火墙/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/uploads/w1.png)" alt="Windows防火墙" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/技术/">技术</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/技术/Windows/">Windows</a></p>
+                            <p class="item-title"><a href="/2018/04/24/Windows防火墙/" class="title">Windows防火墙</a></p>
+                            <p class="item-date"><time datetime="2018-04-24T06:35:40.000Z" itemprop="datePublished">2018-04-24</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/工作/">工作</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/想法/">想法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">21</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Linux/">Linux</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/MacOS/">MacOS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Python编程/">Python编程</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Windows/">Windows</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/中间件应用/">中间件应用</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/">数据库</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/虚拟化/">虚拟化</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/生活/心情/">心情</a><span class="category-list-count">1</span></li></ul></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/MacOS/" style="font-size: 10px;">MacOS</a> <a href="/tags/Oracle/" style="font-size: 15px;">Oracle</a> <a href="/tags/Tomcat/" style="font-size: 10px;">Tomcat</a> <a href="/tags/Ubuntu/" style="font-size: 12.5px;">Ubuntu</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/kvm/" style="font-size: 17.5px;">kvm</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/openldap/" style="font-size: 12.5px;">openldap</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/shell/" style="font-size: 15px;">shell</a> <a href="/tags/web/" style="font-size: 10px;">web</a> <a href="/tags/命令/" style="font-size: 12.5px;">命令</a> <a href="/tags/心情/" style="font-size: 10px;">心情</a> <a href="/tags/情怀/" style="font-size: 12.5px;">情怀</a> <a href="/tags/数据库/" style="font-size: 15px;">数据库</a> <a href="/tags/脚本/" style="font-size: 15px;">脚本</a> <a href="/tags/防火墙/" style="font-size: 10px;">防火墙</a> <a href="/tags/项目实施/" style="font-size: 10px;">项目实施</a>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2020 Zhu Jie</p>
+                
+                <p>Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="https://github.com/ppoffice" target="_blank">PPOffice</a></p>
+                
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+    </div>
+    
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+    
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+</body>
+</html>

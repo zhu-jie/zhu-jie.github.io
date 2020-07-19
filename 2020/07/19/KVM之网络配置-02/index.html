@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    
+
+    
+    <title>KVM之网络配置--02 | Zhu&#39;s Blog</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="linux,kvm" />
+    
+    <meta name="description" content="手动从配置文件建立桥接网卡 新建网卡配置文件  12[root@localhost ~]# cd /etc/sysconfig/network-scripts/[root@localhost network-scripts]# cp ifcfg-eth0 ifcfg-br0 # 直接拷贝本地  修改复制的br0配置文件  1234567891011121314151617181920[root@l">
+<meta name="keywords" content="linux,kvm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="KVM之网络配置--02">
+<meta property="og:url" content="http://blog.cnjie.net/2020/07/19/KVM之网络配置-02/index.html">
+<meta property="og:site_name" content="Zhu&#39;s Blog">
+<meta property="og:description" content="手动从配置文件建立桥接网卡 新建网卡配置文件  12[root@localhost ~]# cd /etc/sysconfig/network-scripts/[root@localhost network-scripts]# cp ifcfg-eth0 ifcfg-br0 # 直接拷贝本地  修改复制的br0配置文件  1234567891011121314151617181920[root@l">
+<meta property="og:updated_time" content="2020-07-19T13:01:45.062Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="KVM之网络配置--02">
+<meta name="twitter:description" content="手动从配置文件建立桥接网卡 新建网卡配置文件  12[root@localhost ~]# cd /etc/sysconfig/network-scripts/[root@localhost network-scripts]# cp ifcfg-eth0 ifcfg-br0 # 直接拷贝本地  修改复制的br0配置文件  1234567891011121314151617181920[root@l">
+    
+
+    
+
+    
+        <link rel="icon" href="/uploads/favicon.png" />
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.5.0/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">唯有尽力自持，方不至癫狂</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/工作/">工作</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/想法/">想法</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/技术/">技术</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/技术/Linux/">Linux</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/技术/MacOS/">MacOS</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/技术/Python编程/">Python编程</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/技术/Windows/">Windows</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/技术/中间件应用/">中间件应用</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/技术/数据库/">数据库</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/技术/虚拟化/">虚拟化</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/生活/">生活</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/生活/心情/">心情</a></li></ul></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/技术/">技术</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/技术/虚拟化/">虚拟化</a>
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-KVM之网络配置-02" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        KVM之网络配置--02
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+  <div class="article-date">
+    <i class="fa fa-calendar"></i>
+    <a href="/2020/07/19/KVM之网络配置-02/" class="article-date">
+       <time datetime="2020-07-19T12:57:22.000Z" itemprop="datePublished">2020-07-19</time>
+    </a>
+  </div>
+
+
+<div class="article-date">
+  <i class="fa fa-calendar-plus-o"></i>
+  <a href="/2020/07/19/KVM之网络配置-02/" class="article-date">
+     <time datetime="2020-07-19T13:01:45.062Z" itemprop="dateModified">2020-07-19</time>
+  </a>
+</div>
+
+
+                
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/kvm/">kvm</a>, <a class="tag-link" href="/tags/linux/">linux</a>
+    </div>
+
+                
+
+                
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            
+
+            
+
+            
+
+            <h1 id="手动从配置文件建立桥接网卡"><a href="#手动从配置文件建立桥接网卡" class="headerlink" title="手动从配置文件建立桥接网卡"></a>手动从配置文件建立桥接网卡</h1><blockquote>
+<p><strong>新建网卡配置文件</strong></p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root@localhost ~]<span class="comment"># cd /etc/sysconfig/network-scripts/</span></div><div class="line">[root@localhost network-scripts]<span class="comment"># cp ifcfg-eth0 ifcfg-br0 # 直接拷贝本地</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>修改复制的br0配置文件</strong></p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">[root@localhost network-scripts]<span class="comment"># cat ifcfg-br0 </span></div><div class="line">TYPE=Bridge  <span class="comment"># 需要修改为Bridge</span></div><div class="line">PROXY_METHOD=none</div><div class="line">BROWSER_ONLY=no</div><div class="line">BOOTPROTO=static</div><div class="line">DEFROUTE=yes</div><div class="line">IPV4_FAILURE_FATAL=no</div><div class="line">IPV6INIT=yes</div><div class="line">IPV6_AUTOCONF=yes</div><div class="line">IPV6_DEFROUTE=yes</div><div class="line">IPV6_FAILURE_FATAL=no</div><div class="line">IPV6_ADDR_GEN_MODE=stable-privacy</div><div class="line">NAME=br0  <span class="comment"># 需要修改br0</span></div><div class="line"><span class="comment">#UUID=abb1e71b-9a34-48dc-b94f-ca3d8a22e07a # 如果有mac地址则需要清除</span></div><div class="line">DEVICE=br0 <span class="comment"># 需要修改br0</span></div><div class="line">ONBOOT=yes</div><div class="line">IPADDR=192.168.0.43</div><div class="line">NETMASK=255.255.255.0</div><div class="line">GATEWAY=192.168.0.1</div><div class="line">DNS1=192.168.0.1</div></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>将物理网卡eth0连接到br0桥接（作为桥接成员)</strong></p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 修改ifcfg-eth0配置文件：</span></div><div class="line"><span class="comment"># cat ifcfg-eth0 </span></div><div class="line">TYPE=Ethernet</div><div class="line">PROXY_METHOD=none</div><div class="line">BROWSER_ONLY=no</div><div class="line">BOOTPROTO=none</div><div class="line">DEFROUTE=yes</div><div class="line">IPV4_FAILURE_FATAL=no</div><div class="line">IPV6INIT=yes</div><div class="line">IPV6_AUTOCONF=yes</div><div class="line">IPV6_DEFROUTE=yes</div><div class="line">IPV6_FAILURE_FATAL=no</div><div class="line">IPV6_ADDR_GEN_MODE=stable-privacy</div><div class="line">NAME=eth0</div><div class="line">UUID=abb1e71b-9a34-48dc-b94f-ca3d8a22e07a</div><div class="line">DEVICE=eth0</div><div class="line">ONBOOT=yes</div><div class="line">BRIDGE=br0 <span class="comment"># 指定桥接设备为br0</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>重启网络服务</strong></p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[root@localhost ~]<span class="comment"># systemctl restart network</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>查看桥接配置</strong></p>
+</blockquote>
+<p>如果br0启用成功，则原来的eth0的地址的会到br0</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">[root@localhost ~]<span class="comment"># ip a</span></div><div class="line">1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000</div><div class="line">    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00</div><div class="line">    inet 127.0.0.1/8 scope host lo</div><div class="line">       valid_lft forever preferred_lft forever</div><div class="line">    inet6 ::1/128 scope host </div><div class="line">       valid_lft forever preferred_lft forever</div><div class="line">2: eth0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast master br0 state UP group default qlen 1000</div><div class="line">    link/ether 52:54:00:18:8a:72 brd ff:ff:ff:ff:ff:ff</div><div class="line">3: virbr0: &lt;NO-CARRIER,BROADCAST,MULTICAST,UP&gt; mtu 1500 qdisc noqueue state DOWN group default qlen 1000</div><div class="line">    link/ether 52:54:00:5a:84:4f brd ff:ff:ff:ff:ff:ff</div><div class="line">    inet 192.168.122.1/24 brd 192.168.122.255 scope global virbr0</div><div class="line">       valid_lft forever preferred_lft forever</div><div class="line">4: virbr0-nic: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc pfifo_fast master virbr0 state DOWN group default qlen 1000</div><div class="line">    link/ether 52:54:00:5a:84:4f brd ff:ff:ff:ff:ff:ff</div><div class="line">5: br0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue state UP group default qlen 1000</div><div class="line">    link/ether 52:54:00:18:8a:72 brd ff:ff:ff:ff:ff:ff</div><div class="line">    inet 192.168.0.43/24 brd 192.168.0.255 scope global noprefixroute br0</div><div class="line">       valid_lft forever preferred_lft forever</div><div class="line">    inet6 fe80::a0c3:866c:ab31:fd8b/64 scope link noprefixroute </div><div class="line">       valid_lft forever preferred_lft forever</div></pre></td></tr></table></figure>
+<h1 id="命令行快速建立桥接网卡"><a href="#命令行快速建立桥接网卡" class="headerlink" title="命令行快速建立桥接网卡"></a>命令行快速建立桥接网卡</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">[root@localhost ~]<span class="comment"># brctl addbr br0  #增加一个br0的网桥</span></div><div class="line">[root@localhost ~]<span class="comment"># brctl show     </span></div><div class="line">bridge name     bridge id               STP enabled     interfaces</div><div class="line">br0             8000.000000000000       no</div><div class="line">virbr0          8000.525400689be3       yes             virbr0-nic</div><div class="line">                                                        vnet0</div><div class="line">然后将bro网桥加入到eth0接口，这个操作结束后ssh将连接补上node1</div><div class="line">[root@localhost ~]<span class="comment"># brctl addif br0 eth0</span></div><div class="line">解决连接不上的问题</div><div class="line">[root@localhost ~]<span class="comment"># ip addr del dev eth0 10.0.0.7/24</span></div><div class="line">[root@localhost ~]<span class="comment"># ifconfig br0 10.0.0.7/24 up</span></div></pre></td></tr></table></figure>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://blog.cnjie.net/2020/07/19/KVM之网络配置-02/" data-id="ckct48a3q001yz92qjj20kkhr" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": {
+            "@type": "Person",
+            "name": "Zhu Jie"
+        },
+        "headline": "KVM之网络配置--02",
+        "image": "http://blog.cnjie.net",
+        "keywords": "linux kvm",
+        "genre": "技术 虚拟化",
+        "datePublished": "2020-07-19",
+        "dateCreated": "2020-07-19",
+        "dateModified": "2020-07-19",
+        "url": "http://blog.cnjie.net/2020/07/19/KVM之网络配置-02/",
+        "description": "手动从配置文件建立桥接网卡
+新建网卡配置文件
+
+12[root@localhost ~]# cd /etc/sysconfig/network-scripts/[root@localhost network-scripts]# cp ifcfg-eth0 ifcfg-br0 # 直接拷贝本地
+
+修改复制的br0配置文件
+
+1234567891011121314151617181920[root@l",
+        "wordCount": 592
+    }
+</script>
+
+</article>
+
+    <section id="comments">
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/zhu-jie" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weixin" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-weixin"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2020/07/19/KVM之本地安装虚拟机-03/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            KVM之本地安装虚拟机--03
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2020/07/19/KVM之入门介绍与基于CentOS7的安装部署-01/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">KVM之入门介绍与基于CentOS7的安装部署--01</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/07/19/kvm之从网上镜像安装虚拟机Centos6-10-04/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/uploads/kvm_04_1.png)" alt="KVM之从网上镜像安装虚拟机Centos6.10--04" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/技术/">技术</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/技术/虚拟化/">虚拟化</a></p>
+                            <p class="item-title"><a href="/2020/07/19/kvm之从网上镜像安装虚拟机Centos6-10-04/" class="title">KVM之从网上镜像安装虚拟机Centos6.10--04</a></p>
+                            <p class="item-date"><time datetime="2020-07-19T13:14:09.000Z" itemprop="datePublished">2020-07-19</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/07/19/KVM之本地安装虚拟机-03/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/uploads/kvm_03_1.png)" alt="KVM之本地安装虚拟机--03" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/技术/">技术</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/技术/虚拟化/">虚拟化</a></p>
+                            <p class="item-title"><a href="/2020/07/19/KVM之本地安装虚拟机-03/" class="title">KVM之本地安装虚拟机--03</a></p>
+                            <p class="item-date"><time datetime="2020-07-19T13:01:31.000Z" itemprop="datePublished">2020-07-19</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/07/19/KVM之网络配置-02/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/技术/">技术</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/技术/虚拟化/">虚拟化</a></p>
+                            <p class="item-title"><a href="/2020/07/19/KVM之网络配置-02/" class="title">KVM之网络配置--02</a></p>
+                            <p class="item-date"><time datetime="2020-07-19T12:57:22.000Z" itemprop="datePublished">2020-07-19</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/07/19/KVM之入门介绍与基于CentOS7的安装部署-01/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/uploads/kvm_01_1.png)" alt="KVM之入门介绍与基于CentOS7的安装部署--01" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/技术/">技术</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/技术/虚拟化/">虚拟化</a></p>
+                            <p class="item-title"><a href="/2020/07/19/KVM之入门介绍与基于CentOS7的安装部署-01/" class="title">KVM之入门介绍与基于CentOS7的安装部署--01</a></p>
+                            <p class="item-date"><time datetime="2020-07-19T12:32:40.000Z" itemprop="datePublished">2020-07-19</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/04/24/Windows防火墙/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/uploads/w1.png)" alt="Windows防火墙" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/技术/">技术</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/技术/Windows/">Windows</a></p>
+                            <p class="item-title"><a href="/2018/04/24/Windows防火墙/" class="title">Windows防火墙</a></p>
+                            <p class="item-date"><time datetime="2018-04-24T06:35:40.000Z" itemprop="datePublished">2018-04-24</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/工作/">工作</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/想法/">想法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">21</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Linux/">Linux</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/MacOS/">MacOS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Python编程/">Python编程</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Windows/">Windows</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/中间件应用/">中间件应用</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/">数据库</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/虚拟化/">虚拟化</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/生活/心情/">心情</a><span class="category-list-count">1</span></li></ul></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/MacOS/" style="font-size: 10px;">MacOS</a> <a href="/tags/Oracle/" style="font-size: 15px;">Oracle</a> <a href="/tags/Tomcat/" style="font-size: 10px;">Tomcat</a> <a href="/tags/Ubuntu/" style="font-size: 12.5px;">Ubuntu</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/kvm/" style="font-size: 17.5px;">kvm</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/openldap/" style="font-size: 12.5px;">openldap</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/shell/" style="font-size: 15px;">shell</a> <a href="/tags/web/" style="font-size: 10px;">web</a> <a href="/tags/命令/" style="font-size: 12.5px;">命令</a> <a href="/tags/心情/" style="font-size: 10px;">心情</a> <a href="/tags/情怀/" style="font-size: 12.5px;">情怀</a> <a href="/tags/数据库/" style="font-size: 15px;">数据库</a> <a href="/tags/脚本/" style="font-size: 15px;">脚本</a> <a href="/tags/防火墙/" style="font-size: 10px;">防火墙</a> <a href="/tags/项目实施/" style="font-size: 10px;">项目实施</a>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2020 Zhu Jie</p>
+                
+                <p>Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="https://github.com/ppoffice" target="_blank">PPOffice</a></p>
+                
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+    </div>
+    
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+    
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+</body>
+</html>

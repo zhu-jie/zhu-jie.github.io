@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    
+
+    
+    <title>KVM之从网上镜像安装虚拟机Centos6.10--04 | Zhu&#39;s Blog</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="keywords" content="linux,kvm" />
+    
+    <meta name="description" content="确认镜像地址CentOS6.10镜像地址http://mirrors.163.com/centos/6.10/os/x86_64/ 开始安装虚拟机1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768">
+<meta name="keywords" content="linux,kvm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="KVM之从网上镜像安装虚拟机Centos6.10--04">
+<meta property="og:url" content="http://blog.cnjie.net/2020/07/19/kvm之从网上镜像安装虚拟机Centos6-10-04/index.html">
+<meta property="og:site_name" content="Zhu&#39;s Blog">
+<meta property="og:description" content="确认镜像地址CentOS6.10镜像地址http://mirrors.163.com/centos/6.10/os/x86_64/ 开始安装虚拟机1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768">
+<meta property="og:image" content="http://blog.cnjie.net/uploads/kvm_04_1.png">
+<meta property="og:updated_time" content="2020-07-19T13:27:09.918Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="KVM之从网上镜像安装虚拟机Centos6.10--04">
+<meta name="twitter:description" content="确认镜像地址CentOS6.10镜像地址http://mirrors.163.com/centos/6.10/os/x86_64/ 开始安装虚拟机1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768">
+<meta name="twitter:image" content="http://blog.cnjie.net/uploads/kvm_04_1.png">
+    
+
+    
+
+    
+        <link rel="icon" href="/uploads/favicon.png" />
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.5.0/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">唯有尽力自持，方不至癫狂</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/工作/">工作</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/想法/">想法</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/技术/">技术</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/技术/Linux/">Linux</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/技术/MacOS/">MacOS</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/技术/Python编程/">Python编程</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/技术/Windows/">Windows</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/技术/中间件应用/">中间件应用</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/技术/数据库/">数据库</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/技术/虚拟化/">虚拟化</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/生活/">生活</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/生活/心情/">心情</a></li></ul></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/技术/">技术</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/技术/虚拟化/">虚拟化</a>
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-kvm之从网上镜像安装虚拟机Centos6-10-04" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        KVM之从网上镜像安装虚拟机Centos6.10--04
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+  <div class="article-date">
+    <i class="fa fa-calendar"></i>
+    <a href="/2020/07/19/kvm之从网上镜像安装虚拟机Centos6-10-04/" class="article-date">
+       <time datetime="2020-07-19T13:14:09.000Z" itemprop="datePublished">2020-07-19</time>
+    </a>
+  </div>
+
+
+<div class="article-date">
+  <i class="fa fa-calendar-plus-o"></i>
+  <a href="/2020/07/19/kvm之从网上镜像安装虚拟机Centos6-10-04/" class="article-date">
+     <time datetime="2020-07-19T13:27:09.918Z" itemprop="dateModified">2020-07-19</time>
+  </a>
+</div>
+
+
+                
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/kvm/">kvm</a>, <a class="tag-link" href="/tags/linux/">linux</a>
+    </div>
+
+                
+
+                
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            
+
+            
+
+            
+
+            <h1 id="确认镜像地址"><a href="#确认镜像地址" class="headerlink" title="确认镜像地址"></a>确认镜像地址</h1><p>CentOS6.10镜像地址<br><a href="http://mirrors.163.com/centos/6.10/os/x86_64/" target="_blank" rel="external">http://mirrors.163.com/centos/6.10/os/x86_64/</a></p>
+<h1 id="开始安装虚拟机"><a href="#开始安装虚拟机" class="headerlink" title="开始安装虚拟机"></a>开始安装虚拟机</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div><div class="line">208</div><div class="line">209</div><div class="line">210</div><div class="line">211</div><div class="line">212</div><div class="line">213</div><div class="line">214</div><div class="line">215</div><div class="line">216</div><div class="line">217</div><div class="line">218</div><div class="line">219</div><div class="line">220</div><div class="line">221</div><div class="line">222</div><div class="line">223</div><div class="line">224</div><div class="line">225</div><div class="line">226</div><div class="line">227</div><div class="line">228</div><div class="line">229</div><div class="line">230</div><div class="line">231</div><div class="line">232</div><div class="line">233</div><div class="line">234</div><div class="line">235</div><div class="line">236</div><div class="line">237</div><div class="line">238</div><div class="line">239</div><div class="line">240</div><div class="line">241</div><div class="line">242</div><div class="line">243</div><div class="line">244</div><div class="line">245</div><div class="line">246</div><div class="line">247</div><div class="line">248</div><div class="line">249</div><div class="line">250</div><div class="line">251</div><div class="line">252</div><div class="line">253</div><div class="line">254</div><div class="line">255</div><div class="line">256</div><div class="line">257</div><div class="line">258</div><div class="line">259</div><div class="line">260</div><div class="line">261</div><div class="line">262</div><div class="line">263</div><div class="line">264</div><div class="line">265</div><div class="line">266</div><div class="line">267</div><div class="line">268</div><div class="line">269</div><div class="line">270</div><div class="line">271</div><div class="line">272</div><div class="line">273</div><div class="line">274</div><div class="line">275</div><div class="line">276</div><div class="line">277</div><div class="line">278</div><div class="line">279</div><div class="line">280</div><div class="line">281</div><div class="line">282</div><div class="line">283</div><div class="line">284</div><div class="line">285</div><div class="line">286</div><div class="line">287</div><div class="line">288</div><div class="line">289</div><div class="line">290</div><div class="line">291</div><div class="line">292</div><div class="line">293</div><div class="line">294</div><div class="line">295</div><div class="line">296</div><div class="line">297</div><div class="line">298</div><div class="line">299</div><div class="line">300</div><div class="line">301</div><div class="line">302</div><div class="line">303</div><div class="line">304</div><div class="line">305</div><div class="line">306</div><div class="line">307</div><div class="line">308</div><div class="line">309</div><div class="line">310</div><div class="line">311</div><div class="line">312</div><div class="line">313</div><div class="line">314</div><div class="line">315</div><div class="line">316</div><div class="line">317</div><div class="line">318</div></pre></td><td class="code"><pre><div class="line">[root@kvm image]<span class="comment"># virt-install --name vm3_from_internet --disk path=/kvm/image/vm3_from_internet,size=18 --ram 1024 --vcpus 1 --os-type linux --os-variant rhel6 --network bridge=br0 --location=http://mirrors.163.com/centos/6.10/os/x86_64/ --graphics none --console pty,target_type=serial --extra-args 'console=ttyS0,115200n8 serial' # 回车开始将会有一系列的输出在终端打印</span></div><div class="line"></div><div class="line">Starting install...</div><div class="line">Retrieving file vmlinuz...                                                                                                         | 4.1 MB  00:00:00     </div><div class="line">Retrieving file initrd.img...                                                                                                      |  39 MB  00:00:03     </div><div class="line">Allocating <span class="string">'vm3_from_internet'</span>                                                                                                     |  18 GB  00:00:00     </div><div class="line">Connected to domain vm3_from_internet</div><div class="line">Escape character is ^]</div><div class="line">Initializing cgroup subsys cpuset</div><div class="line">Initializing cgroup subsys cpu</div><div class="line">Linux version 2.6.32-754.el6.x86_64 (mockbuild@x86-01.bsys.centos.org) (gcc version 4.4.7 20120313 (Red Hat 4.4.7-23) (GCC) ) <span class="comment">#1 SMP Tue Jun 19 21:26:04 UTC 2018</span></div><div class="line">Command line: console=ttyS0,115200n8 serial method=http://mirrors.163.com/centos/6.10/os/x86_64/</div><div class="line">KERNEL supported cpus:</div><div class="line">  Intel GenuineIntel</div><div class="line">  AMD AuthenticAMD</div><div class="line">  Centaur CentaurHauls</div><div class="line">BIOS-provided physical RAM map:</div><div class="line"> BIOS-e820: 0000000000000000 - 000000000009fc00 (usable)</div><div class="line"> BIOS-e820: 000000000009fc00 - 00000000000a0000 (reserved)</div><div class="line"> BIOS-e820: 00000000000f0000 - 0000000000100000 (reserved)</div><div class="line"> BIOS-e820: 0000000000100000 - 000000003fff7000 (usable)</div><div class="line"> BIOS-e820: 000000003fff7000 - 0000000040000000 (reserved)</div><div class="line"> BIOS-e820: 00000000feffc000 - 00000000ff000000 (reserved)</div><div class="line"> BIOS-e820: 00000000fffc0000 - 0000000100000000 (reserved)</div><div class="line">SMBIOS version 2.4 @ 0xF6210</div><div class="line">SMBIOS 2.4 present.</div><div class="line">Hypervisor detected: KVM</div><div class="line">last_pfn = 0x3fff7 max_arch_pfn = 0x400000000</div><div class="line">x86 PAT enabled: cpu 0, old 0x7040600070406, new 0x7010600070106</div><div class="line">init_memory_mapping: 0000000000000000-000000003fff7000</div><div class="line">RAMDISK: 3d8d8000 - 3ffefc9a</div><div class="line">ACPI: Deleted _OSI(Windows 2012)</div><div class="line">ACPI: Deleted _OSI(Windows 2013)</div><div class="line">ACPI: RSDP 00000000000f61e0 00014 (v00 BOCHS )</div><div class="line">ACPI: RSDT 000000003ffffad7 00030 (v01 BOCHS  BXPCRSDT 00000001 BXPC 00000001)</div><div class="line">ACPI: FACP 000000003ffff177 00074 (v01 BOCHS  BXPCFACP 00000001 BXPC 00000001)</div><div class="line">ACPI: DSDT 000000003fffe040 01137 (v01 BOCHS  BXPCDSDT 00000001 BXPC 00000001)</div><div class="line">ACPI: FACS 000000003fffe000 00040</div><div class="line">ACPI: SSDT 000000003ffff1eb 00874 (v01 BOCHS  BXPCSSDT 00000001 BXPC 00000001)</div><div class="line">ACPI: APIC 000000003ffffa5f 00078 (v01 BOCHS  BXPCAPIC 00000001 BXPC 00000001)</div><div class="line">Setting APIC routing to flat.</div><div class="line">No NUMA configuration found</div><div class="line">Faking a node at 0000000000000000-000000003fff7000</div><div class="line">Bootmem setup node 0 0000000000000000-000000003fff7000</div><div class="line">  NODE_DATA [0000000000009000 - 000000000003cfff]</div><div class="line">  bootmap [000000000003d000 -  0000000000044fff] pages 8</div><div class="line">(7 early reservations) ==&gt; bootmem [0000000000 - 003fff7000]</div><div class="line">  <span class="comment">#0 [0000000000 - 0000001000]   BIOS data page ==&gt; [0000000000 - 0000001000]</span></div><div class="line">  <span class="comment">#1 [0000006000 - 0000008000]       TRAMPOLINE ==&gt; [0000006000 - 0000008000]</span></div><div class="line">  <span class="comment">#2 [0001000000 - 0002050a64]    TEXT DATA BSS ==&gt; [0001000000 - 0002050a64]</span></div><div class="line">  <span class="comment">#3 [003d8d8000 - 003ffefc9a]          RAMDISK ==&gt; [003d8d8000 - 003ffefc9a]</span></div><div class="line">  <span class="comment">#4 [000009fc00 - 0000100000]    BIOS reserved ==&gt; [000009fc00 - 0000100000]</span></div><div class="line">  <span class="comment">#5 [0002051000 - 00020510b9]              BRK ==&gt; [0002051000 - 00020510b9]</span></div><div class="line">  <span class="comment">#6 [0000008000 - 0000009000]          PGTABLE ==&gt; [0000008000 - 0000009000]</span></div><div class="line">found SMP MP-table at [ffff8800000f6380] f6380</div><div class="line">kvm-clock: Using msrs 4b564d01 and 4b564d00</div><div class="line">kvm-clock: cpu 0, msr 0:1c3db81, boot clock</div><div class="line">Zone PFN ranges:</div><div class="line">  DMA      0x00000001 -&gt; 0x00001000</div><div class="line">  DMA32    0x00001000 -&gt; 0x00100000</div><div class="line">  Normal   0x00100000 -&gt; 0x00100000</div><div class="line">Movable zone start PFN <span class="keyword">for</span> each node</div><div class="line">early_node_map[2] active PFN ranges</div><div class="line">    0: 0x00000001 -&gt; 0x0000009f</div><div class="line">    0: 0x00000100 -&gt; 0x0003fff7</div><div class="line">ACPI: PM-Timer IO Port: 0x608</div><div class="line">Setting APIC routing to flat.</div><div class="line">ACPI: LAPIC (acpi_id[0x00] lapic_id[0x00] enabled)</div><div class="line">ACPI: LAPIC_NMI (acpi_id[0xff] dfl dfl lint[0x1])</div><div class="line">ACPI: IOAPIC (id[0x00] address[0xfec00000] gsi_base[0])</div><div class="line">IOAPIC[0]: apic_id 0, version 17, address 0xfec00000, GSI 0-23</div><div class="line">ACPI: INT_SRC_OVR (bus 0 bus_irq 0 global_irq 2 dfl dfl)</div><div class="line">ACPI: INT_SRC_OVR (bus 0 bus_irq 5 global_irq 5 high level)</div><div class="line">ACPI: INT_SRC_OVR (bus 0 bus_irq 9 global_irq 9 high level)</div><div class="line">ACPI: INT_SRC_OVR (bus 0 bus_irq 10 global_irq 10 high level)</div><div class="line">ACPI: INT_SRC_OVR (bus 0 bus_irq 11 global_irq 11 high level)</div><div class="line">Using ACPI (MADT) <span class="keyword">for</span> SMP configuration information</div><div class="line">SMP: Allowing 1 CPUs, 0 hotplug CPUs</div><div class="line">PM: Registered nosave memory: 000000000009f000 - 00000000000a0000</div><div class="line">PM: Registered nosave memory: 00000000000a0000 - 00000000000f0000</div><div class="line">PM: Registered nosave memory: 00000000000f0000 - 0000000000100000</div><div class="line">Allocating PCI resources starting at 40000000 (gap: 40000000:beffc000)</div><div class="line">Booting paravirtualized kernel on KVM</div><div class="line">NR_CPUS:4096 nr_cpumask_bits:1 nr_cpu_ids:1 nr_node_ids:1</div><div class="line">PERCPU: Embedded 33 pages/cpu @ffff880002200000 s104088 r8192 d22888 u2097152</div><div class="line">pcpu-alloc: s104088 r8192 d22888 u2097152 alloc=1*2097152</div><div class="line">pcpu-alloc: [0] 0 </div><div class="line">kvm-clock: cpu 0, msr 0:2218b81, primary cpu clock</div><div class="line">kvm-stealtime: cpu 0, msr 2212d00</div><div class="line">Built 1 zonelists <span class="keyword">in</span> Node order, mobility grouping on.  Total pages: 258353</div><div class="line">Policy zone: DMA32</div><div class="line">Kernel <span class="built_in">command</span> line: console=ttyS0,115200n8 serial method=http://mirrors.163.com/centos/6.10/os/x86_64/</div><div class="line">PID <span class="built_in">hash</span> table entries: 4096 (order: 3, 32768 bytes)</div><div class="line">Memory: 976436k/1048540k available (5520k kernel code, 392k absent, 71712k reserved, 6909k data, 1340k init)</div><div class="line">Kernel/User page tables isolation: enabled</div><div class="line">Hierarchical RCU implementation.</div><div class="line">NR_IRQS:33024 nr_irqs:256</div><div class="line">Console: colour *CGA 80x25</div><div class="line">console [ttyS0] enabled</div><div class="line">allocated 4194304 bytes of page_cgroup</div><div class="line">please try <span class="string">'cgroup_disable=memory'</span> option <span class="keyword">if</span> you don<span class="string">'t want memory cgroups</span></div><div class="line">Detected 2099.902 MHz processor.</div><div class="line">Calibrating delay loop (skipped) preset value.. 4199.80 BogoMIPS (lpj=2099902)</div><div class="line">pid_max: default: 32768 minimum: 301</div><div class="line">Security Framework initialized</div><div class="line">SELinux:  Initializing.</div><div class="line">Dentry cache hash table entries: 131072 (order: 8, 1048576 bytes)</div><div class="line">Inode-cache hash table entries: 65536 (order: 7, 524288 bytes)</div><div class="line">Mount-cache hash table entries: 256</div><div class="line">Initializing cgroup subsys ns</div><div class="line">Initializing cgroup subsys cpuacct</div><div class="line">Initializing cgroup subsys memory</div><div class="line">Initializing cgroup subsys devices</div><div class="line">Initializing cgroup subsys freezer</div><div class="line">Initializing cgroup subsys net_cls</div><div class="line">Initializing cgroup subsys blkio</div><div class="line">Initializing cgroup subsys perf_event</div><div class="line">Initializing cgroup subsys net_prio</div><div class="line">mce: CPU supports 10 MCE banks</div><div class="line">Speculative Store Bypass: Vulnerable</div><div class="line">FEATURE SPEC_CTRL Not Present</div><div class="line">FEATURE IBPB_SUPPORT Not Present</div><div class="line">Spectre V2 : Mitigation: Full retpoline</div><div class="line">alternatives: switching to unfair spinlock</div><div class="line">SMP alternatives: switching to UP code</div><div class="line">Freeing SMP alternatives: 38k freed</div><div class="line">ACPI: Core revision 20090903</div><div class="line">ftrace: converting mcount calls to 0f 1f 44 00 00</div><div class="line">ftrace: allocating 22051 entries in 87 pages</div><div class="line">Enabling x2apic</div><div class="line">Enabled x2apic</div><div class="line">APIC routing finalized to physical x2apic.</div><div class="line">..TIMER: vector=0x30 apic1=0 pin1=2 apic2=-1 pin2=-1</div><div class="line">CPU0: Intel Westmere E56xx/L56xx/X56xx (Nehalem-C) stepping 01</div><div class="line">APIC calibration not consistent with PM-Timer: 93ms instead of 100ms</div><div class="line">APIC delta adjusted to PM-Timer: 6249985 (5824949)</div><div class="line">Performance Events: unsupported p6 CPU model 44 no PMU driver, software events only.</div><div class="line">NMI watchdog disabled (cpu0): hardware events not enabled</div><div class="line">Brought up 1 CPUs</div><div class="line">Total of 1 processors activated (4199.80 BogoMIPS).</div><div class="line">devtmpfs: initialized</div><div class="line">regulator: core version 0.5</div><div class="line">NET: Registered protocol family 16</div><div class="line">ACPI: bus type pci registered</div><div class="line">PCI: Using configuration type 1 for base access</div><div class="line">bio: create slab &lt;bio-0&gt; at 0</div><div class="line">ACPI: Interpreter enabled</div><div class="line">ACPI: (supports S0 S5)</div><div class="line">ACPI: Using IOAPIC for interrupt routing</div><div class="line">ACPI: No dock devices found.</div><div class="line">PCI: Using host bridge windows from ACPI; if necessary, use "pci=nocrs" and report a bug</div><div class="line">ACPI: PCI Root Bridge [PCI0] (domain 0000 [bus 00-ff])</div><div class="line">pci_root PNP0A03:00: host bridge window [io  0x0000-0x0cf7]</div><div class="line">pci_root PNP0A03:00: host bridge window [io  0x0d00-0xffff]</div><div class="line">pci_root PNP0A03:00: host bridge window [mem 0x000a0000-0x000bffff]</div><div class="line">pci_root PNP0A03:00: host bridge window [mem 0x40000000-0xfebfffff]</div><div class="line">PCI host bridge to bus 0000:00</div><div class="line">pci_bus 0000:00: root bus resource [io  0x0000-0x0cf7]</div><div class="line">pci_bus 0000:00: root bus resource [io  0x0d00-0xffff]</div><div class="line">pci_bus 0000:00: root bus resource [mem 0x000a0000-0x000bffff]</div><div class="line">pci_bus 0000:00: root bus resource [mem 0x40000000-0xfebfffff]</div><div class="line">pci 0000:00:01.3: quirk: [io  0x0600-0x063f] claimed by PIIX4 ACPI</div><div class="line">pci 0000:00:01.3: quirk: [io  0x0700-0x070f] claimed by PIIX4 SMB</div><div class="line">ACPI: PCI Interrupt Link [LNKA] (IRQs 5 *10 11)</div><div class="line">ACPI: PCI Interrupt Link [LNKB] (IRQs 5 *10 11)</div><div class="line">ACPI: PCI Interrupt Link [LNKC] (IRQs 5 10 *11)</div><div class="line">ACPI: PCI Interrupt Link [LNKD] (IRQs 5 10 *11)</div><div class="line">ACPI: PCI Interrupt Link [LNKS] (IRQs *9)</div><div class="line">vgaarb: loaded</div><div class="line">SCSI subsystem initialized</div><div class="line">usbcore: registered new interface driver usbfs</div><div class="line">usbcore: registered new interface driver hub</div><div class="line">usbcore: registered new device driver usb</div><div class="line">PCI: Using ACPI for IRQ routing</div><div class="line">NetLabel: Initializing</div><div class="line">NetLabel:  domain hash size = 128</div><div class="line">NetLabel:  protocols = UNLABELED CIPSOv4</div><div class="line">NetLabel:  unlabeled traffic allowed by default</div><div class="line">Switching to clocksource kvm-clock</div><div class="line">pnp: PnP ACPI init</div><div class="line">ACPI: bus type pnp registered</div><div class="line">pnp: PnP ACPI: found 6 devices</div><div class="line">ACPI: ACPI bus type pnp unregistered</div><div class="line">NET: Registered protocol family 2</div><div class="line">IP route cache hash table entries: 32768 (order: 6, 262144 bytes)</div><div class="line">TCP established hash table entries: 131072 (order: 9, 2097152 bytes)</div><div class="line">TCP bind hash table entries: 65536 (order: 8, 1048576 bytes)</div><div class="line">TCP: Hash tables configured (established 131072 bind 65536)</div><div class="line">TCP reno registered</div><div class="line">NET: Registered protocol family 1</div><div class="line">pci 0000:00:00.0: Limiting direct PCI/PCI transfers</div><div class="line">pci 0000:00:01.0: PIIX3: Enabling Passive Release</div><div class="line">pci 0000:00:01.0: Activating ISA DMA hang workarounds</div><div class="line">ACPI: PCI Interrupt Link [LNKD] enabled at IRQ 11</div><div class="line">pci 0000:00:04.0: PCI INT A -&gt; Link[LNKD] -&gt; GSI 11 (level, high) -&gt; IRQ 11</div><div class="line">pci 0000:00:04.0: PCI INT A disabled</div><div class="line">ACPI: PCI Interrupt Link [LNKA] enabled at IRQ 10</div><div class="line">pci 0000:00:04.1: PCI INT B -&gt; Link[LNKA] -&gt; GSI 10 (level, high) -&gt; IRQ 10</div><div class="line">pci 0000:00:04.1: PCI INT B disabled</div><div class="line">ACPI: PCI Interrupt Link [LNKB] enabled at IRQ 10</div><div class="line">pci 0000:00:04.2: PCI INT C -&gt; Link[LNKB] -&gt; GSI 10 (level, high) -&gt; IRQ 10</div><div class="line">pci 0000:00:04.2: PCI INT C disabled</div><div class="line">ACPI: PCI Interrupt Link [LNKC] enabled at IRQ 11</div><div class="line">pci 0000:00:04.7: PCI INT D -&gt; Link[LNKC] -&gt; GSI 11 (level, high) -&gt; IRQ 11</div><div class="line">pci 0000:00:04.7: PCI INT D disabled</div><div class="line">Trying to unpack rootfs image as initramfs...</div><div class="line">Freeing initrd memory: 40031k freed</div><div class="line">sha256_ssse3: Using SSSE3 optimized SHA-256 implementation</div><div class="line">futex hash table entries: 256 (order: 2, 16384 bytes)</div><div class="line">audit: initializing netlink socket (disabled)</div><div class="line">type=2000 audit(1594113609.004:1): initialized</div><div class="line">HugeTLB registered 2 MB page size, pre-allocated 0 pages</div><div class="line">VFS: Disk quotas dquot_6.5.2</div><div class="line">Dquot-cache hash table entries: 512 (order 0, 4096 bytes)</div><div class="line">msgmni has been set to 1985</div><div class="line">ksign: Installing public key data</div><div class="line">Loading keyring</div><div class="line">- Added public key 283EE91FE7BCC01A</div><div class="line">- User ID: CentOS (Kernel Module GPG key)</div><div class="line">Block layer SCSI generic (bsg) driver version 0.4 loaded (major 250)</div><div class="line">io scheduler noop registered</div><div class="line">io scheduler anticipatory registered</div><div class="line">io scheduler deadline registered</div><div class="line">io scheduler cfq registered (default)</div><div class="line">pci_hotplug: PCI Hot Plug PCI Core version: 0.5</div><div class="line">pciehp: PCI Express Hot Plug Controller Driver version: 0.4</div><div class="line">acpiphp: ACPI Hot Plug PCI Controller Driver version: 0.5</div><div class="line">acpiphp: Slot [2] registered</div><div class="line">acpiphp: Slot [3] registered</div><div class="line">acpiphp: Slot [5] registered</div><div class="line">acpiphp: Slot [6] registered</div><div class="line">acpiphp: Slot [7] registered</div><div class="line">acpiphp: Slot [8] registered</div><div class="line">acpiphp: Slot [9] registered</div><div class="line">acpiphp: Slot [10] registered</div><div class="line">acpiphp: Slot [11] registered</div><div class="line">acpiphp: Slot [12] registered</div><div class="line">acpiphp: Slot [13] registered</div><div class="line">acpiphp: Slot [14] registered</div><div class="line">acpiphp: Slot [15] registered</div><div class="line">acpiphp: Slot [16] registered</div><div class="line">acpiphp: Slot [17] registered</div><div class="line">acpiphp: Slot [18] registered</div><div class="line">acpiphp: Slot [19] registered</div><div class="line">acpiphp: Slot [20] registered</div><div class="line">acpiphp: Slot [21] registered</div><div class="line">acpiphp: Slot [22] registered</div><div class="line">acpiphp: Slot [23] registered</div><div class="line">acpiphp: Slot [24] registered</div><div class="line">acpiphp: Slot [25] registered</div><div class="line">acpiphp: Slot [26] registered</div><div class="line">acpiphp: Slot [27] registered</div><div class="line">acpiphp: Slot [28] registered</div><div class="line">acpiphp: Slot [29] registered</div><div class="line">acpiphp: Slot [30] registered</div><div class="line">acpiphp: Slot [31] registered</div><div class="line">input: Power Button as /devices/LNXSYSTM:00/LNXPWRBN:00/input/input0</div><div class="line">ACPI: Power Button [PWRF]</div><div class="line">[Firmware Bug]: No valid trip found</div><div class="line">GHES: HEST is not enabled!</div><div class="line">Non-volatile memory driver v1.3</div><div class="line">Linux agpgart interface v0.103</div><div class="line">crash memory driver: version 1.1</div><div class="line">Serial: 8250/16550 driver, 4 ports, IRQ sharing enabled</div><div class="line">ial8250: ttyS0 at I/O 0x3f8 (irq = 4) is a 16550A</div><div class="line">00:05: ttyS0 at I/O 0x3f8 (irq = 4) is a 16550A</div><div class="line">brd: module loaded</div><div class="line">loop: module loaded</div><div class="line">input: Macintosh mouse button emulation as /devices/virtual/input/input1</div><div class="line">Fixed MDIO Bus: probed</div><div class="line">ehci_hcd: USB 2.0 'Enhanced<span class="string">' Host Controller (EHCI) Driver</span></div><div class="line">ehci_hcd 0000:00:04.7: PCI INT D -&gt; Link[LNKC] -&gt; GSI 11 (level, high) -&gt; IRQ 11</div><div class="line">ehci_hcd 0000:00:04.7: EHCI Host Controller</div><div class="line">ehci_hcd 0000:00:04.7: new USB bus registered, assigned bus number 1</div><div class="line">ehci_hcd 0000:00:04.7: irq 11, io mem 0xfebc1000</div><div class="line">ehci_hcd 0000:00:04.7: USB 2.0 started, EHCI 1.00</div><div class="line">usb usb1: New USB device found, idVendor=1d6b, idProduct=0002</div><div class="line">usb usb1: New USB device strings: Mfr=3, Product=2, SerialNumber=1</div><div class="line">usb usb1: Product: EHCI Host Controller</div><div class="line">usb usb1: Manufacturer: Linux 2.6.32-754.el6.x86_64 ehci_hcd</div><div class="line">usb usb1: SerialNumber: 0000:00:04.7</div><div class="line">usb usb1: configuration #1 chosen from 1 choice</div><div class="line">hub 1-0:1.0: USB hub found</div><div class="line">hub 1-0:1.0: 6 ports detected</div><div class="line">ohci_hcd: USB 1.1 'Open<span class="string">' Host Controller (OHCI) Driver</span></div><div class="line">uhci_hcd: USB Universal Host Controller Interface driver</div><div class="line">uhci_hcd 0000:00:04.0: PCI INT A -&gt; Link[LNKD] -&gt; GSI 11 (level, high) -&gt; IRQ 11</div><div class="line">uhci_hcd 0000:00:04.0: UHCI Host Controller</div><div class="line">uhci_hcd 0000:00:04.0: new USB bus registered, assigned bus number 2</div><div class="line">uhci_hcd 0000:00:04.0: irq 11, io base 0x0000c060</div><div class="line">usb usb2: New USB device found, idVendor=1d6b, idProduct=0001</div><div class="line">usb usb2: New USB device strings: Mfr=3, Product=2, SerialNumber=1</div><div class="line">usb usb2: Product: UHCI Host Controller</div><div class="line">usb usb2: Manufacturer: Linux 2.6.32-754.el6.x86_64 uhci_hcd</div><div class="line">usb usb2: SerialNumber: 0000:00:04.0</div><div class="line">usb usb2: configuration #1 chosen from 1 choice</div><div class="line">hub 2-0:1.0: USB hub found</div><div class="line">hub 2-0:1.0: 2 ports detected</div><div class="line">uhci_hcd 0000:00:04.1: PCI INT B -&gt; Link[LNKA] -&gt; GSI 10 (level, high) -&gt; IRQ 10</div><div class="line">uhci_hcd 0000:00:04.1: UHCI Host Controller</div><div class="line">uhci_hcd 0000:00:04.1: new USB bus registered, assigned bus number 3</div><div class="line">uhci_hcd 0000:00:04.1: irq 10, io base 0x0000c080</div><div class="line">usb usb3: New USB device found, idVendor=1d6b, idProduct=0001</div><div class="line">usb usb3: New USB device strings: Mfr=3, Product=2, SerialNumber=1</div><div class="line">usb usb3: Product: UHCI Host Controller</div><div class="line">usb usb3: Manufacturer: Linux 2.6.32-754.el6.x86_64 uhci_hcd</div><div class="line">usb usb3: SerialNumber: 0000:00:04.1</div><div class="line">usb usb3: configuration #1 chosen from 1 choice</div><div class="line">hub 3-0:1.0: USB hub found</div><div class="line">hub 3-0:1.0: 2 ports detected</div><div class="line">uhci_hcd 0000:00:04.2: PCI INT C -&gt; Link[LNKB] -&gt; GSI 10 (level, high) -&gt; IRQ 10</div><div class="line">uhci_hcd 0000:00:04.2: UHCI Host Controller</div><div class="line">uhci_hcd 0000:00:04.2: new USB bus registered, assigned bus number 4</div><div class="line">uhci_hcd 0000:00:04.2: irq 10, io base 0x0000c0a0</div><div class="line">usb usb4: New USB device found, idVendor=1d6b, idProduct=0001</div><div class="line">usb usb4: New USB device strings: Mfr=3, Product=2, SerialNumber=1</div><div class="line">usb usb4: Product: UHCI Host Controller</div><div class="line">usb usb4: Manufacturer: Linux 2.6.32-754.el6.x86_64 uhci_hcd</div></pre></td></tr></table></figure>
+<blockquote>
+<p>第一步</p>
+</blockquote>
+<p><img src="/uploads/kvm_04_1.png" alt=""></p>
+<blockquote>
+<p>配置IP</p>
+</blockquote>
+<p><img src="/uploads/kvm_04_2.png" alt=""></p>
+<blockquote>
+<p>应用配置</p>
+</blockquote>
+<p><img src="/uploads/kvm_04_3.png" alt=""></p>
+<blockquote>
+<p>使用文本模式</p>
+</blockquote>
+<p><img src="/uploads/kvm_04_4.png" alt=""></p>
+<blockquote>
+<p>欢迎界面</p>
+</blockquote>
+<p><img src="/uploads/kvm_04_5.png" alt=""></p>
+<blockquote>
+<p>全部重新初始化</p>
+</blockquote>
+<p><img src="/uploads/kvm_04_6.png" alt=""></p>
+<blockquote>
+<p>设置时间</p>
+</blockquote>
+<p><img src="/uploads/kvm_04_7.png" alt=""></p>
+<blockquote>
+<p>设置root密码</p>
+</blockquote>
+<p><img src="/uploads/kvm_04_8.png" alt=""></p>
+<blockquote>
+<p>分区确认</p>
+</blockquote>
+<p><img src="/uploads/kvm_04_9.png" alt=""></p>
+<blockquote>
+<p>改变所有磁盘</p>
+</blockquote>
+<p><img src="/uploads/kvm_04_10.png" alt=""></p>
+<blockquote>
+<p>剩下的就是漫长的安装等待过长</p>
+</blockquote>
+<p><img src="/uploads/kvm_04_11.png" alt=""></p>
+<blockquote>
+<p>安装完毕后重启即可</p>
+</blockquote>
+<p><img src="/uploads/kvm_04_12.png" alt=""></p>
+<blockquote>
+<p>至此可以看到已经安装完成</p>
+</blockquote>
+<p><img src="/uploads/kvm_04_13.png" alt=""></p>
+<h1 id="退出安装好的虚拟机"><a href="#退出安装好的虚拟机" class="headerlink" title="退出安装好的虚拟机"></a>退出安装好的虚拟机</h1><p>退出当前虚拟机。退出虚拟控制台使用键盘上的 Ctrl + ] 键。</p>
+<h1 id="查看当前虚拟机运行状态"><a href="#查看当前虚拟机运行状态" class="headerlink" title="查看当前虚拟机运行状态"></a>查看当前虚拟机运行状态</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[root@kvm image]<span class="comment"># virsh list</span></div><div class="line"> Id    Name                           State</div><div class="line">----------------------------------------------------</div><div class="line"> 6     vm3_from_internet              running</div></pre></td></tr></table></figure>
+<h1 id="再次使用virsh连接vm3-from-internet"><a href="#再次使用virsh连接vm3-from-internet" class="headerlink" title="再次使用virsh连接vm3_from_internet"></a>再次使用virsh连接vm3_from_internet</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">[root@kvm ~]<span class="comment"># virsh console vm3_from_internet</span></div><div class="line">Connected to domain vm3_from_internet</div><div class="line">Escape character is ^]</div><div class="line"></div><div class="line">CentOS release 6.10 (Final)</div><div class="line">Kernel 2.6.32-754.el6.x86_64 on an x86_64</div><div class="line"></div><div class="line">localhost.localdomain login: root</div><div class="line">Password: </div><div class="line">Last login: Tue Jul  7 09:35:38 on ttyS0</div></pre></td></tr></table></figure>
+<h1 id="关于console连接虚拟机的说明"><a href="#关于console连接虚拟机的说明" class="headerlink" title="关于console连接虚拟机的说明"></a>关于console连接虚拟机的说明</h1><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;为什么我们可以使用console连接通过网络安装的虚拟机呢？是因为在进行网络安装的时候使用了这些参数:–console pty,target_type=serial –extra-args ‘console=ttyS0,115200n8 serial’ ，而这些参数不支持本地镜像安装。当然，如果你硬是想要用virsh console 去连接本地安装的虚拟机 ,那也是可以的。只不过，要登录登陆本地虚拟机做以下配置：</p>
+<blockquote>
+<p>在 /etc/securetty 文件中添加登录控制台ttyS0:　</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[root@vm1 ~]<span class="comment"># echo "ttyS0" &gt;&gt; /etc/securetty</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>在grub 配置文件中加入 console=ttyS0 （注：该配置必须与kernel 在同一行，不允许在新行）</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">[root@vm1 ~]<span class="comment"># egrep -v '^$|#' /etc/grub.conf</span></div><div class="line">default=0</div><div class="line">timeout=5</div><div class="line">splashimage=(hd0,0)/grub/splash.xpm.gz</div><div class="line">hiddenmenu</div><div class="line">title CentOS 6 (2.6.32-754.el6.x86_64)</div><div class="line">        root (hd0,0)</div><div class="line">        kernel /vmlinuz-2.6.32-754.el6.x86_64 ro root=/dev/mapper/VolGroup-lv_root rd_NO_LUKS LANG=en_US.UTF-8 rd_NO_MD rd_LVM_LV=VolGroup/lv_swap SYSFONT=latarcyrheb-sun16 crashkernel=auto rd_LVM_LV=VolGroup/lv_root  KEYBOARDTYPE=pc KEYTABLE=us rd_NO_DM rhgb quiet console=ttyS0</div><div class="line">        initrd /initramfs-2.6.32-754.el6.x86_64.img</div></pre></td></tr></table></figure>
+<blockquote>
+<p>在初始化启动模式文件中加入 S0:12345:respawn:/sbin/agetty ttyS0 115200</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[root@vm1 ~]<span class="comment"># echo "S0:12345:respawn:/sbin/agetty ttyS0 115200" &gt;&gt; /etc/inittab</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>重启虚拟机</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[root@vm1 ~]<span class="comment"># init 6</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>重启完成后在kvm物理机上通过console连接</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">[root@kvm ~]<span class="comment"># virsh console vm1</span></div><div class="line">Connected to domain vm1</div><div class="line">Escape character is ^]</div><div class="line"></div><div class="line">CentOS release 6.10 (Final)</div><div class="line">Kernel 2.6.32-754.el6.x86_64 on an x86_64</div><div class="line"></div><div class="line">localhost.localdomain login: root</div><div class="line">Password: </div><div class="line">Last login: Tue Jul  7 20:32:13 from 192.168.0.43</div><div class="line">i[root@vm1 ~]<span class="comment"># ip a</span></div><div class="line">1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN </div><div class="line">    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00</div><div class="line">    inet 127.0.0.1/8 scope host lo</div><div class="line">    inet6 ::1/128 scope host </div><div class="line">       valid_lft forever preferred_lft forever</div><div class="line">2: eth0: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN qlen 1000</div><div class="line">    link/ether 52:54:00:28:93:1d brd ff:ff:ff:ff:ff:ff</div></pre></td></tr></table></figure>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;通过主机名可以看到已经成功登陆</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://blog.cnjie.net/2020/07/19/kvm之从网上镜像安装虚拟机Centos6-10-04/" data-id="ckct48a3j001qz92qtt0oquc3" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "author": {
+            "@type": "Person",
+            "name": "Zhu Jie"
+        },
+        "headline": "KVM之从网上镜像安装虚拟机Centos6.10--04",
+        "image": "http://blog.cnjie.net/uploads/kvm_04_1.png",
+        "keywords": "linux kvm",
+        "genre": "技术 虚拟化",
+        "datePublished": "2020-07-19",
+        "dateCreated": "2020-07-19",
+        "dateModified": "2020-07-19",
+        "url": "http://blog.cnjie.net/2020/07/19/kvm之从网上镜像安装虚拟机Centos6-10-04/",
+        "description": "确认镜像地址CentOS6.10镜像地址http://mirrors.163.com/centos/6.10/os/x86_64/
+开始安装虚拟机1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768",
+        "wordCount": 3234
+    }
+</script>
+
+</article>
+
+    <section id="comments">
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/zhu-jie" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weixin" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-weixin"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2020/07/19/KVM之本地安装虚拟机-03/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">KVM之本地安装虚拟机--03</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/07/19/kvm之从网上镜像安装虚拟机Centos6-10-04/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/uploads/kvm_04_1.png)" alt="KVM之从网上镜像安装虚拟机Centos6.10--04" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/技术/">技术</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/技术/虚拟化/">虚拟化</a></p>
+                            <p class="item-title"><a href="/2020/07/19/kvm之从网上镜像安装虚拟机Centos6-10-04/" class="title">KVM之从网上镜像安装虚拟机Centos6.10--04</a></p>
+                            <p class="item-date"><time datetime="2020-07-19T13:14:09.000Z" itemprop="datePublished">2020-07-19</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/07/19/KVM之本地安装虚拟机-03/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/uploads/kvm_03_1.png)" alt="KVM之本地安装虚拟机--03" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/技术/">技术</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/技术/虚拟化/">虚拟化</a></p>
+                            <p class="item-title"><a href="/2020/07/19/KVM之本地安装虚拟机-03/" class="title">KVM之本地安装虚拟机--03</a></p>
+                            <p class="item-date"><time datetime="2020-07-19T13:01:31.000Z" itemprop="datePublished">2020-07-19</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/07/19/KVM之网络配置-02/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/技术/">技术</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/技术/虚拟化/">虚拟化</a></p>
+                            <p class="item-title"><a href="/2020/07/19/KVM之网络配置-02/" class="title">KVM之网络配置--02</a></p>
+                            <p class="item-date"><time datetime="2020-07-19T12:57:22.000Z" itemprop="datePublished">2020-07-19</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2020/07/19/KVM之入门介绍与基于CentOS7的安装部署-01/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/uploads/kvm_01_1.png)" alt="KVM之入门介绍与基于CentOS7的安装部署--01" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/技术/">技术</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/技术/虚拟化/">虚拟化</a></p>
+                            <p class="item-title"><a href="/2020/07/19/KVM之入门介绍与基于CentOS7的安装部署-01/" class="title">KVM之入门介绍与基于CentOS7的安装部署--01</a></p>
+                            <p class="item-date"><time datetime="2020-07-19T12:32:40.000Z" itemprop="datePublished">2020-07-19</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/04/24/Windows防火墙/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/uploads/w1.png)" alt="Windows防火墙" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/技术/">技术</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/技术/Windows/">Windows</a></p>
+                            <p class="item-title"><a href="/2018/04/24/Windows防火墙/" class="title">Windows防火墙</a></p>
+                            <p class="item-date"><time datetime="2018-04-24T06:35:40.000Z" itemprop="datePublished">2018-04-24</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/工作/">工作</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/想法/">想法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/">技术</a><span class="category-list-count">21</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Linux/">Linux</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/MacOS/">MacOS</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Python编程/">Python编程</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/Windows/">Windows</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/中间件应用/">中间件应用</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/数据库/">数据库</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/技术/虚拟化/">虚拟化</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/生活/">生活</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/生活/心情/">心情</a><span class="category-list-count">1</span></li></ul></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/03/">三月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">一月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/MacOS/" style="font-size: 10px;">MacOS</a> <a href="/tags/Oracle/" style="font-size: 15px;">Oracle</a> <a href="/tags/Tomcat/" style="font-size: 10px;">Tomcat</a> <a href="/tags/Ubuntu/" style="font-size: 12.5px;">Ubuntu</a> <a href="/tags/Windows/" style="font-size: 10px;">Windows</a> <a href="/tags/kvm/" style="font-size: 17.5px;">kvm</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/openldap/" style="font-size: 12.5px;">openldap</a> <a href="/tags/python/" style="font-size: 15px;">python</a> <a href="/tags/shell/" style="font-size: 15px;">shell</a> <a href="/tags/web/" style="font-size: 10px;">web</a> <a href="/tags/命令/" style="font-size: 12.5px;">命令</a> <a href="/tags/心情/" style="font-size: 10px;">心情</a> <a href="/tags/情怀/" style="font-size: 12.5px;">情怀</a> <a href="/tags/数据库/" style="font-size: 15px;">数据库</a> <a href="/tags/脚本/" style="font-size: 15px;">脚本</a> <a href="/tags/防火墙/" style="font-size: 10px;">防火墙</a> <a href="/tags/项目实施/" style="font-size: 10px;">项目实施</a>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2020 Zhu Jie</p>
+                
+                <p>Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="https://github.com/ppoffice" target="_blank">PPOffice</a></p>
+                
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+    </div>
+    
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+    
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+</body>
+</html>
