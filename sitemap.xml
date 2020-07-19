@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.cnjie.net/about/index.html</loc>
+    
+    <lastmod>2020-07-19T09:05:11.106Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.cnjie.net/2017/06/11/%E5%86%8D%E8%A7%81%E5%AE%89%E5%8D%93/</loc>
     
     <lastmod>2020-07-19T09:01:24.793Z</lastmod>
@@ -180,13 +187,6 @@
     <loc>http://blog.cnjie.net/tags/index.html</loc>
     
     <lastmod>2018-09-12T06:35:52.497Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.cnjie.net/about/index.html</loc>
-    
-    <lastmod>2018-09-12T06:35:52.496Z</lastmod>
     
   </url>
   
